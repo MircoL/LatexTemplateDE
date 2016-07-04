@@ -1,0 +1,39 @@
+\newcommand{\dokumentTyp}{Skript} 
+
+\input{../mircol-v5}
+
+% ===========================================================================
+
+\pgfqkeys{/VorlageVersion5}{
+	all/Autoren						= {Autor1&Autor2},	
+	all/Titel	 					= {Skript-Beispiel},
+	all/Untertitel 					= {Untertitel},
+	all/VersionPraefix 				= {ss16},
+	all/Version 					= {true},
+	all/Icon/Breite					= {.9},
+	all/Icon/URL					= {http://www.el-celta.de/latex2.gif},
+	all/Index/Boxen/blau/zeigen 	= {false},
+	all/Index/Boxen/blau/titel 		= {Liste der Sätze und Definitionen},
+	all/Index/Boxen/gelb/zeigen 	= {false},
+	all/Index/Boxen/gelb/titel 		= {Liste der Beispiele},
+	all/Index/Boxen/gruen/zeigen 	= {false},
+	all/Index/Boxen/gruen/titel 	= {Liste der ...},
+	all/Index/Begriffe/zeigen 		= {false},
+	all/Index/Begriffe/titel 		= {Index},
+	Skript/AnmkerkungenTitelseite 	= {Anmerkung},
+}
+
+
+% ===========================================================================
+%      Hier eigene Packages einbinden und eigene Befehle definieren
+
+
+% ===========================================================================
+
+
+\begin{document}
+	\chapter{Kapitel}
+		\lipsum[2]\footnote{Fußnote}
+		\lipsum[4]
+
+\end{document}

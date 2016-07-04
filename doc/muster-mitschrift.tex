@@ -1,0 +1,40 @@
+%\newcommand{\dokumentTyp}{Skript} % oder
+\newcommand{\dokumentTyp}{Mitschrift} % oder
+%\newcommand{\dokumentTyp}{Buch} % oder
+%\newcommand{\dokumentTyp}{Praesentation}
+
+\input{../mircol-v5}
+
+
+
+
+% ===========================================================================
+
+
+\pgfqkeys{/VorlageVersion5}{
+	all/Autoren						= {Autor1&Autor2},	
+	all/Titel	 					= {Mitschrift-Beispiel},
+	all/Untertitel 					= {Untertitel},
+	all/VersionPraefix 				= {ss16},
+	all/Icon/Breite					= {.2},
+	all/Version 					= {true},
+	Mitschriften/Vorlesungsname 	= {Einführung in \LaTeX},
+	Mitschriften/Typ 				= {\"Ubung},
+	Mitschriften/LfdNr 				= {},
+	Mitschriften/Gruppe 			= {},
+}
+
+
+% ===========================================================================
+%      Hier eigene Packages einbinden und eigene Befehle definieren
+
+
+% ===========================================================================
+
+
+\begin{document}
+	\chapter{Kapitel}
+		\lipsum[2]\footnote{Fußnote}
+		\lipsum[4]
+
+\end{document}

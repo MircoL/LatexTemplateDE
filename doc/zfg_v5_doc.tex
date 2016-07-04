@@ -1,0 +1,520 @@
+\def\dokumentTyp{Skript} 	
+
+\input{../mircol-v5}
+
+\pgfqkeys{/VorlageVersion5}{
+	all/Autoren						= {Mirco Lukas},
+	all/Titel	 					= {Dokumentation zur \LaTeX-Vorlage},
+	all/Untertitel 					= {Version~V5},
+	all/VersionPraefix 				= {v5.50},
+	all/Version 					= {true},
+	all/Icon/Breite					= {1},
+	all/Icon/URL					= {http://www.el-celta.de/latex2.gif},
+	all/Index/Boxen/blau/zeigen		= {false},
+	all/Index/Boxen/blau/titel 		= {Liste der Sätze und Definitionen},
+	all/Index/Boxen/gelb/zeigen		= {false},
+	all/Index/Boxen/gelb/titel 		= {Liste der Beispiele},
+	all/Index/Boxen/gruen/zeigen	= {false},
+	all/Index/Boxen/gruen/titel 	= {Liste der ...},
+	all/Index/Begriffe/zeigen 		= {true},
+	all/Index/Begriffe/titel 		= {B\ \ Index},
+	all/Index/Literatur/zeigen	 	= {false},
+	all/Index/Literatur/titel 		= {Literaturverzeichnis},
+}
+
+
+\usepackage{pdfpages}
+\newcommand{\incpdf}[1]{\includepdf[pages=-,frame= true,delta=3mm 3mm]{#1}}
+
+\begin{document}
+%		Dieses Dokument ist die Doku zur \LaTeX-Vorlage von \name{Mirco Lukas}. Sie listet insbesondere selbstdefinierte Befehle und Umgebungen auf.
+
+	% ------------------------------------------------------------------------------------------------------------------
+	
+	\chapter{Grundeinstellungen für Dokumente}
+		\section{Der \texttt{\textbackslash dokumentTyp}}
+			\index{dokumentTyp@\texttt{dokumentTyp}}
+			Es gibt aktuell vier DokumentTypen. Diese führen zu verschiedenen Dokumentausgaben.
+			\begin{tabbing}
+				mmmmmmmmmmmmmmm				\= mmmmmmmmmmmmmmmm 				 \kill
+				\bf Der \texttt{dokumentTyp}\ellipse 	
+											\> \bf \ellipse erzeugt die \texttt{documentclass} \\ 
+				\tt Skript					\> \tt scrbook\\
+				\tt Mitschrift				\> \tt article \\
+				\tt Buch					\> \tt scrbook \\
+				\tt Praesentation			\> \tt beamer \\
+				\emph{(ein anderer)}		\> \em (Fehlermeldung: Ungueltiger Dokumenttyp.)
+			\end{tabbing}
+		Die einzelnen Dokumente, die erzeugt werden, sehen wie folgt aus:
+		
+		
+		\begin{center}
+			\vspace*{20em}
+			\subsection{Beispiel zu \tt Skript}
+		\end{center}
+		\incpdf{muster-skript.pdf}
+		\newpage
+		
+		\begin{center}
+			\vspace*{20em}
+			\subsection{Beispiel zu \tt Mitschrift}
+		\end{center}
+		\incpdf{muster-mitschrift.pdf}
+		\newpage
+		
+		\begin{center}
+			\vspace*{20em}
+			\subsection{Beispiel zu \tt Buch}
+		\end{center}
+		\incpdf{muster-buch.pdf}
+		\newpage
+		
+		\begin{center}
+			\vspace*{20em}
+			\subsection{Beispiel zu \tt Praesentation}
+		\end{center}
+		\incpdf{muster-praesentation.pdf}
+		\newpage
+
+
+	
+	\section{Dokumenteinstellungen}
+		\subsection{Arrays}
+			Es werden folgende Arrays definiert. Felder werden \emph{ohne Leerzeichen} mit "`\&"' getrennt: \verb|all/Autoren = {Alice&Bob}|.
+			\begin{tabbing}
+				mmmmmmmmmmmm 		\= mmmmmmmmmmmmmmmm				\=	mmmmmmmmmm	\kill
+				\bf Name des Arrays	\> \bf Inhalt 					\> \bf Dokumentklassen\\
+				 all/Autoren		\> Die Autoren der Dokumente	\> alle
+			\end{tabbing}
+		\subsection{Pgfkeys}
+			Im Folgenden werden die existierenden Schlüssel-Werte-Paare gelistet. Die Dokumentklassen sind aus dem Schlüssel direkt ersichtlich. Dabei bedeuten:
+			\begin{description}
+				\item[string:] 
+						Ein beliebiger Text. Zeilenumbrüche sind mit \verb|\par| zu definieren.
+				\item[boolean:] 
+						Genau eines der Werte \texttt{true} oder \texttt{false}.
+				\item[integer:]
+						Eine positive, ganze Zahl ($n \in \mathbb N^+ = \{1, \, 2, \, \ldots\}$)
+				\item[double:]
+						Eine positive Zahl ($n \in \mathbb Q^+$)
+				\item[length:]
+						Eine Zahl plus Einheit, \zb "`12em"'; "`42pt"'
+				\item[url:]
+						Eine Internetadresse.
+				\item[{\tt \{\ldots\}}:] 
+						Genau einer der genannten Werte.
+			\end{description}
+			\newpage
+			\begin{tabbing}
+				mmmmmmmmmmmmmmmmmm				\= mmmmmmmmmmmmmmmmmmmmmm 				\=\kill
+				\bf Schlüssel					\> \bf Bedeutung 						\> \bf Wertebereich	\\
+				all/Titel	 					\> Titel der Arbeit						\> string			\\
+				all/Untertitel 					\> Untertitel							\> string			\\
+				all/VersionPraefix 				\> Präfix der Versionsangabe			\> string			\\
+				all/Version 					\> Anzeigen der Version					\> boolean 			\\
+				all/Icon/Breite					\> Breite des Titelbildes				\> double 			\\
+				all/Icon/URL					\> URL des Titelbildes					\> url				\\
+				all/Index/Boxen/blau/zeigen 	\> Zeige den Index aller blauen Boxen	\> boolean 			\\
+				all/Index/Boxen/blau/titel 		\> Titel des Index' aller blauen Boxen	\> string			\\
+				all/Index/Boxen/gelb/zeigen 	\> Zeige den Index aller gelben Boxen	\> boolean 			\\
+				all/Index/Boxen/gelb/titel 		\> Titel des Index' aller gelben Boxen	\> string			\\
+				all/Index/Boxen/gruen/zeigen 	\> Zeige den Index aller grünen Boxen	\> boolean 			\\
+				all/Index/Boxen/gruen/titel 	\> Titel des Index' aller grünen Boxen	\> string			\\
+				all/Index/Begriffe/zeigen 		\> Zeige den Index der Begriffe			\> boolean			\\
+				all/Index/Begriffe/titel 		\> Titel des Index' der Begriffe		\> string			\\
+				all/Index/Literatur/zeigen		\> Zeige das Literaturverzeichnis		\> boolean			\\
+				all/Index/Literatur/titel		\> Titel des Literaturverzeichnisses	\> string			\\
+				Skript/AnmkerkungenTitelseite 	\> Eine Anmerkung, die auf der Titelseite\> string			\\ 
+												\> erscheint												\\
+				Mitschriften/Vorlesungsname 	\> Name der Vorlesung 					\> string			\\
+				Mitschriften/Typ 				\> \zb \emph{Übung, Vorlesung, Praktikum}	
+																						\> string			\\
+				Mitschriften/LfdNr 				\> \zb die jeweilige Übungsnummer		\> string (!)		\\
+				Mitschriften/Gruppe 			\> \zb die Übungsgruppe					\> string			\\
+				Mitschriften/Headerhoehe		\> Höhe des Headers (falls Text hineinragt)
+																						\> length			\\
+				Buecher/Widmung					\> Eine Widmung							\> string			\\
+				Buecher/Modus					\> Aufteilung in rechte und linke Seite (\texttt{rl})
+																						\> \{\texttt{rl}, \texttt{e}\} \\
+												\> oder jede Seite einzeln und zentriert (\texttt{e})					\\
+				Praesentationen/TitelKurz		\> Ein Kurztitel (für die Fußzeile)		\> string			\\
+				Praesentationen/Institut		\> Das Institut (für die Titelseite)	\> string			\\
+				Praesentationen/InstitutKurz	\> Abkürzung des Instituts 				\> string 			\\
+												\> (für die Fußzeile)
+			\end{tabbing}
+			\textbf{Besonderheiten:}
+			\begin{itemize}
+				\item Als Titelbild wird die Datei \texttt{titel.jpg} verwendet. Ist sie nicht vorhanden, bleiben die dazugehörigen Befehle ohne Wirkung.
+				\item Als Literaturliste wird die Datei \texttt{quellen.bib} verwendet.
+			\end{itemize}
+
+
+	% ------------------------------------------------------------------------------------------------------------------
+	
+
+	\chapter{Eigene Befehle}
+		\section{Allgemeine Befehle}
+			Ein Stern gibt an, dass der Parameter optional ist. 
+			\begin{tabbing}
+				mmmmmmmmmmm			\= mmmmmmmmmmmmmmm							\= mmmmmmmmmm			\= \kill
+				\bf Befehl			\> \bf Beschreibung							\> \bf Ergebnis 		\> \bf Parameter 				\\
+				\verb|\andd|		\> Ein Synonym für \verb|\wedge|			\> $\andd$ 				\> ---							\\
+				\verb|\aufgabe|		\> Nützlich für Übungsblätter				\> Aufgabe \#1 			\> \#1: Nr. der Aufgabe 		\\
+				\verb|\bigandd|		\> Ein Synonym für \verb|\bigwedge|			\> $\bigandd$ 			\> --- 							\\
+				\verb|\bigorr|		\> Ein Synonym für \verb|\bigvee|			\> $\bigorr$ 			\> --- 							\\
+				\verb|\blitz|		\> Ein Synonym für							\> \lightning\xspace 	\> ---							\\
+									\> \verb|\lightning\xspace|																			\\
+				\verb|\colorref(i)|	\> Farbige Referenzzeichen					\> $i=1:$ \colorref(1)	\> $i \in \{1, \, \ldots, \, 4\}$	\\
+									\>(\zb für Beweise)							\> $i=2:$ \colorref(2)										\\
+									\>											\> $i=3:$ \colorref(3)										\\
+									\>											\> $i=4:$ \colorref(4)										\\
+				\verb|\ellipse|		\> Eine Ellipse	 (\href{https://de.wikipedia.org/wiki/Auslassungspunkte}{Wikipedia})
+									\> \ellipse				\> ---							\\
+				\verb|\fallunterscheidung|\\
+									\> Für Fallunterscheidungen					\> Anm. a)				\> \#1*: Ein Präfix.			\\
+									\>											\>						\> \#2: Der obere Fall			\\
+									\>											\>						\> \#3: Der untere Fall			\\
+				\verb|\fuer|		\> Für Fallunterscheidungen					\> Anm. a)				\> ---							\\
+				\verb|\length|		\> Kurz für $|$Text$|$						\> \length{Text}		\> \#1: ein Text				\\
+				\verb|\name|		\> Ein Text in Kapitälchen					\> \name{Der Autor}		\> \#1: ein Name				\\
+				\verb|\neuerbegriff|\> Einführung eines Begriffs				\> Siehe Abschn. \ref{begriffsdefinitionen}				\\
+				\verb|\neuerbegriffIdx| 
+									\>Einführung eines Begriffs					\> Siehe Abschn. \ref{begriffsdefinitionen}				\\
+				\verb|\orr|			\> Ein Synonym für \verb|\vee|				\> $\orr$ 				\> ---							\\
+				\verb|\sonst|		\> Für Fallunterscheidungen					\> Anm. a)				\> ---							\\
+				\verb|\teilaufgabe|	\> Nützlich für Übungsblätter				\> TA \verb|\aufgabe|.\#1 	
+																										\> \#1: Nr. der Teilaufgabe 	\\
+				\verb|\textmarker|	\> Ein Textmarker							\> \textmarker{green}{Text}
+																										\> \#1: Farbe des Markers		\\
+									\>											\>						\> \#2: Der zu mark. Text 		\\
+				\verb|\qed|			\> Eine Box am Ende der Zeile				\> Anm. b)				\> ---							\\
+				\verb|\wiki|		\> Ein Link zu Wikipedia					\>\wiki{https://de.wikipedia.org/wiki/LaTeX}
+																										\> \#1: Eine Wiki-URL			\\
+									\>  (hier \texttt{https://de.wikipedia.org/wiki/LaTeX})
+			\end{tabbing}
+			\newpage
+			\textbf{Anmerkungen:}
+			\begin{enumeratealpha}
+				\item \verb|\fallunterscheidung[\operatorname{abs}(x) =]{x \fuer x \geq 0,}{-x \sonst.}|
+						\fallunterscheidung[\operatorname{abs}(x) =]{x \fuer x \geq 0,}{-x \sonst.}
+				\item \verb|Dieser Satz ist falsch. \qed| \\
+						Dieser Satz ist falsch. \qed
+			\end{enumeratealpha}
+		\section{Umdefinition vorhandener Befehle}
+			Die folgenden \TeX-/\LaTeX-Befehle wurden umdefiniert. Der Befehl \verb|\relax| deaktiviert ein Kommando.
+			\begin{tabbing}
+				mmmmmm			\= mmmmmmmmmmm			\= \kill
+				\bf Befehl 		\> \bf Neue Bedeutung	\> \bf Bemerkung																										\\
+				\verb|\appendix|\> \verb|\appendix|		\> Stellt nun sicher, dass der \LaTeX-Befehl 																			\\
+								\> 						\> \verb|\appendix| nur einmal aufgerufen wird.																			\\
+				\verb|\section|	\> \verb|\chapter|		\> nur in \texttt{Mitschrift}en, da dort keine \texttt{chapter} existieren.												\\
+				\verb|\epsilon|	\> $\epsilon$			\> $\epsilonOld$ = \verb|\epsilonOld|																					\\
+				\verb|\phi|		\> $\phi$				\> $\phiOld$ = \verb|\phiOld|
+			\end{tabbing}
+		\section{Gängige Abkürzungen}
+			Die folgenden Befehle geben die Abkürzung aus, für die sie stehen, wobei zwischen den Wörtern ein Achtelgeviert-Abstand eingefügt wird.
+			\begin{tabbing}
+				mmmmmmm			\= mmmmmmmmmmmmmm						\= \kill
+				Vergleiche		\>\texttt{o.$\sim$B.$\sim$d.$\sim$A.}:	\> Es sei o.~B.~d.~A. $x>0$.\\
+				und				\>\verb|\obda|=\verb|o.\,b.\,d.\,a.|:	\> Es sei \obda $x>0$.
+			\end{tabbing}
+			Alle Befehle gibt es auch mit Großbuchstaben (\verb|\zB| -- \verb|\ZB|) am Anfang, etwa für Satzanfänge.
+			\begin{tabbing}
+				mmmmmmmmm						\= mmmmmmmmmmmmmmmmmmmmm		\=\kill
+				\bf Befehl						\> \bf Bedeutung 				\> \bf Bemerkung\\
+				\verb|\dhe|, \verb|\Dhe|		\> das heißt 					\> \verb|\dh| ist schon für \dh\ belegt.	\\
+				\verb|\idr|, \verb|\Idr|		\> in der Regel															\\
+				\verb|\obda|, \verb|\Obda|		\> ohne Beschränkung der Allgemeinheit 									\\
+				\verb|\su|, \verb|\Su|			\> siehe unten															\\
+				\verb|\ua|, \verb|\Ua|			\> unter anderem														\\
+				\verb|\zb|, \verb|\Zb|			\> zum Beispiel															\\
+				\verb|\zt|,	\verb|\Zt|			\> zum Teil				
+			\end{tabbing}
+		\section{Begriffsdefinitionen}
+			\label{begriffsdefinitionen}
+			Der Befehl \verb|\neuerbegriff{}| kennzeichnet einen Begriff durch Umrahmung:
+			\begin{quotex}[\href{https://de.wikipedia.org/wiki/Betriebssystem}{Wikipedia}]
+				Ein \neuerbegriff{Betriebssystem} ist eine Zusammenstellung von Computerprogrammen, die die Systemressourcen eines Computers wie Arbeitsspeicher, Festplatten, Ein- und Ausgabegeräte verwaltet und diese Anwendungsprogrammen zur Verfügung stellt. 
+			\end{quotex}
+			Der Befehl \verb|\neuerbegriffIdx{}| funktioniert wie folgt:
+			\begin{itemize}
+				\item Gibt man nur einen Parameter an, so erscheint der Text an der Stelle des Befehls und der gleiche Text steht im Index: \verb|\neuerbegriffIdx{Betriebssystem}| gibt \texttt{Betriebssystem} aus und schreibt auch \texttt{Betriebssystem} in den Index.
+				\item Der optionale Parameter bietet die Möglichkeit, einen abweichenden Text in den Index zu schreiben. Dies ist nützlich für Index-Befehle oder falls der Begriff flektiert ist:
+					\begin{quote}
+						\verb|\neuerbegriffIdx[Betriebssystem, Definition]{Betriebssysteme}| sind \verb|\ellipse|
+					\end{quote}
+				schreibt \neuerbegriff{\texttt{Betriebssysteme}} \texttt{sind\ldots} anstelle des Befehls in den Text und \texttt{Betriebssystem, Definition} in den Index.
+			\end{itemize}
+
+
+	% ------------------------------------------------------------------------------------------------------------------
+
+
+	\chapter{Eigene Umgebungen}
+		\section{Übersicht}
+			Die Umgebungen werden mit \verb|\begin{name} ... \end{name}| umschlossen. Ein Stern gibt an, dass der Parameter optional ist. Beispiele siehe unten.
+			\begin{tabbing}
+				mmmmmmmmmm				\= mmmmmmmmmmmmmmmmmmm					\= mmmmmmmmmmm									\kill
+				\bf Befehl				\> \bf Beschreibung						\> \bf Parameter 								\\
+				\verb|beispiel|			\> Eine \textbf{Beispiel}-Umgebung 		\> \#1${}^*$: Text hinter \emph{Beispiel} 		\\
+										\>										\> \#2${}^*$: $x \in \{o, \, u, \, b\}$ (Abschn. \ref{abstaende beweis beispiel}) \\	
+				\verb|beispiele|		\> Eine \textbf{Beispiele}-Umgebung 	\> \#1${}^*$: Text hinter \emph{Beispiele} 	\\
+										\>										\> \#2${}^*$: $x \in \{o, \, u, \, b\}$ (Abschn. \ref{abstaende beweis beispiel}) \\	
+				\verb|beweis|			\> Eine Umgebung, die mit 				\> \#1${}^*$: Text hinter \emph{Beweis}		\\
+										\> dem \emph{qed}-Symbol ($\Box$) endet	\> \#2${}^*$: $x \in \{o, \, u, \, b\}$ (Abschn. \ref{abstaende beweis beispiel})		\\
+				\verb|enumeratealpha|	\> Eine Auflistung mit a), b), \ellipse	\> ---											\\
+				\verb|enumerateAlpha|	\> Eine Auflistung mit A), B), \ellipse \> ---											\\
+				\verb|enumerateroman|	\> Eine Auflistung mit i), ii), \ellipse\> ---											\\
+				\verb|enumerateRoman|	\> Eine Auflistung mit I), II), \ellipse\> ---											\\
+				\verb|quotex|			\> Eine \texttt{quote}-Umgebung mit Extras
+																		\> Siehe Abschnitt \ref{quotex_quotationx}.			\\
+				\verb|quotationx|		\>	Analog zu \texttt{quotex}	\> Siehe Abschnitt \ref{quotex_quotationx}.
+			\end{tabbing}
+			
+			\fbox{
+				\begin{minipage}[t]{.9\textwidth}
+					\texttt{\textbackslash begin\{enumeratealpha\} \\ \hspace*{2em}
+						\textbackslash item ein Item \textbackslash item ein Item  \\
+						\textbackslash end\{enumeratealpha\}}
+					\begin{enumeratealpha} \item ein Item \item ein Item \end{enumeratealpha}
+				\end{minipage}	
+			} \par
+			\fbox{
+				\begin{minipage}[t]{.9\textwidth}
+					\texttt{\textbackslash begin\{beispiel\}  \\ \hspace*{2em}
+						\textbackslash lipsum[3] \\
+					\textbackslash end\{beispiel\}}
+					\begin{beispiel} \lipsum[3] \end{beispiel}
+				\end{minipage}
+			}
+			\par
+			\fbox{
+				\begin{minipage}[t]{.9\textwidth}
+					\texttt{\textbackslash begin\{beispiele\}[zur Vorlesung]  \\ \hspace*{2em}
+						\textbackslash lipsum[3] \\
+					\textbackslash end\{beispiele\}}
+					\begin{beispiele}[zur Vorlesung] \lipsum[3] \end{beispiele}
+				\end{minipage}
+			}
+			\par
+			\fbox{
+				\begin{minipage}[t]{.9\textwidth}
+					\texttt{\textbackslash begin\{beweis\}[des Satzes 42]  \\ \hspace*{2em}
+						\textbackslash lipsum[3]  \\ 
+					\textbackslash end\{beweis\}}
+					\begin{beweis}[des Satzes 42] \lipsum[3] \end{beweis}
+				\end{minipage}
+			}
+		\section{Die Umgebungen \texttt{quotex} und \texttt{quotationx}}
+			\label{quotex_quotationx}
+			\newcommand{\pangramm}[1][]{%
+				Asynchrone Bas\ifthenelse{\equal{#1}{}}{s}{s:}klänge vom Jazzquintett sind nix für spießige Löwen.\\
+				abcdefghijklmnopqr\ifthenelse{\equal{#1}{}}{}{s:}s{}tuvwxyzäüöß \hspace*{2em} 0123456789\\
+				ABCDEFGHIJKLMNOPQRSTUVWXYZÄÜÖ\\
+				Zażółć gęślą jaźń%
+			}
+			
+			Die Umgebungen haben zwei Parameter, wobei beide optional sind
+			\begin{itemize}
+				\item Der erste Parameter kann beispielsweise der Urheber eines Zitats oder die Angabe eine Quelle sein, \zb \texttt{Donald Knuth}.
+				\item Der zweite Parameter kann einer der Folgenden sein:
+					\begin{itemize}
+						\item \texttt{tt}: {\tt Gibt den Text mit Typewriter-Schrift aus.}
+						\item \texttt{hand}: {\oeschfamily Gibt den Text in Handschrift aus.}
+						\item \texttt{fraktur}: {\frakfamily Gibt den Text mit Frakturschrift aus:.} Das Ende-s ("`Rund-s"')wird als \verb|s:| notiert.
+					\end{itemize}
+					Jeder andere Parameter führt zur Verwendung der Normalschrift. Ist dies gewünscht, sollte man den Parameter allerdings einfach weglassen. 
+					
+					\newpage
+					Als Beispiel ist das \href{https://de.wikipedia.org/wiki/Pangramm\#Liste_deutscher_Pangramme}{Pangramm} 
+					\begin{quote}
+						\pangramm
+					\end{quote}
+					gegeben.\\
+					\emph{Hinweis:} Im Frakturschrift-Beispiel wurde das {\frakfamily s} zu {\frakfamily s:} angepasst, sofern erforderlich.
+			\end{itemize}
+			
+			\begin{redbox}
+				Die polnischen Sonderzeichen \k a und \k e stehen weder in der \texttt{hand}- noch der \texttt{fraktur}-Umgebung zur Verfügung. Sie werden dort jedoch nachgebildet (vgl. folgende Beispiele). Wer die Zeichen durch \texttt{a} bzw. \texttt{e} ohne Ogonek dargestellt haben möchte, muss \verb|\let\k\relax| nach \texttt{\textbackslash begin\{quotex\}} schreiben. 
+			\end{redbox}
+			
+			\begin{redbox}
+				Das Paket \texttt{oesch.sty} steht auf manchen Systemen nicht zur Verfügung. In diesem Fall wird die {\oeschfamily Schreibschrift} durch eine einfache \emph{Kursivschrift} ersetzt. Es hift, wenn man die \href{https://www.ctan.org/tex-archive/fonts/oesch?lang=de}{Paketdatei von CTAN herunterlädt} und in den Ordner der Hauptdatei extrahiert. Die \texttt{Beispiel}- und \texttt{Readme}-Dateien können gelöscht werden.
+			\end{redbox}
+			
+			\fbox{
+				\begin{minipage}[t]{.9\textwidth}
+					\texttt{\textbackslash begin\{quotex\}[Wikipedia][\ellipse] \\ \hspace*{2em}
+							\textbackslash pangramm \\ 
+					\textbackslash end\{quotex\}}
+					\begin{quotex}[Wikipedia (ohne)] 
+						\pangramm
+					\end{quotex}
+					\begin{quotex}[Wikipedia (tt)][tt] 
+							\pangramm
+					\end{quotex}
+					\begin{quotex}[Wikipedia (hand)][hand] 
+						\pangramm
+					\end{quotex}
+					\begin{quotex}[Wikipedia (fraktur)][fraktur]
+						\pangramm[!]
+					\end{quotex}
+					\begin{quotex}[Wikipedia (hand mit \texttt{\textbackslash let\textbackslash k\textbackslash relax})][hand]
+						\let\k\relax \pangramm
+					\end{quotex}
+				\end{minipage}	
+			}
+		\section{Abstände}
+			\label{abstaende beweis beispiel}
+			Wenn die \texttt{beweis}- und den \texttt{beispiel(e)}-Umgebungen mit Aufzählungen beginnen bzw. enden, wird sowohl oben als auch unten ein zu großer Abstand eingefügt:
+			
+			\fbox{
+				\begin{minipage}[t]{.9\textwidth}
+					\texttt{\textbackslash begin\{beweis\}[für P \$\textbackslash not=\$ NP] \\ \hspace*{2em}
+						\textbackslash begin\{itemize\} \textbackslash item Text \textbackslash item Text \textbackslash end\{itemize\} \\ 
+						\textbackslash end\{beweis\}
+					}
+					\begin{beweis}[für P $\not=$ NP]
+						\begin{itemize} \item Text \item Text \end{itemize}
+					\end{beweis}
+				\end{minipage}
+			}
+			
+			\vspace*{.5em}
+			Der zweite -- ebenfalls optionale -- Parameter beeinflusst die Abstände oben und unten:
+			\begin{itemize}
+				\item \texttt o sorgt dafür, dass \texttt{itemize}- und ähnliche Umgebungen den richtigen Abstand nach oben haben;
+				\item \texttt u sorgt dafür, dass das $\Box$-Symbol auf richtiger Höhe ist (betrifft ebenfalls \texttt{itemize}, jedoch natürlich nur Beweise -- der Befehl existiert trotzdem auch für die \texttt{beispiel}-Umgebung);
+				\item \texttt b schaltet beides ein.
+			\end{itemize}
+			
+			\fbox{
+				\begin{minipage}[t]{.9\textwidth}
+					\texttt{\textbackslash begin\{beweis\}[für P \$\textbackslash not=\$ NP][b] \\ \hspace*{2em}
+						\textbackslash begin\{itemize\} \textbackslash item Text \textbackslash item Text \textbackslash end\{itemize\} \\ 
+						\textbackslash end\{beweis\}
+					}
+					\begin{beweis}[für P $\not=$ NP][b]
+						\begin{itemize} \item Text \item Text \end{itemize}
+					\end{beweis}
+				\end{minipage}
+			}
+			
+	\chapter{Farbige Boxen}
+		\section{Standardboxen}
+			Es gibt blaue, grüne und gelbe Boxen. Sie sind alle gleich aufgebaut. Die Umgebungen heißen \verb|blueboxIdx|, \verb|yellowboxIdx| und \verb|greenboxIdx|.
+			\begin{itemize}
+				\item Der erste Parameter ist ein optionales Label, auf den mit \verb|\ref| oder \verb|\vref| zugegriffen werden kann.
+				\item Der zweite Parameter ist der Titel der Box.
+			\end{itemize}
+			Auf einen Zähler kann mit \verb|\boxnummer| zugegriffen werden. \par
+			\fbox{
+				\begin{minipage}[t]{.9\textwidth}
+					\texttt{\textbackslash begin\{blueboxIdx\}[Def einer blauen Box]\{Definition \textbackslash boxnummer: Eine Box\} \\ \hspace*{2em}
+						\textbackslash lipsum[3]\\ 
+						\textbackslash end\{blueboxIdx\}
+					}
+					\begin{blueboxIdx}[Def einer blauen Box]{Definition \boxnummer: Eine Box}
+						\lipsum[3]
+					\end{blueboxIdx}\par
+					Die Informationen sind in der Box \vref{Def einer blauen Box} (= \texttt{\textbackslash vref\{Def einer blauen Box\}}) zu finden.
+				\end{minipage} 
+			}
+		\newpage
+		\section{Rote Boxen}
+			Rote Boxen (\verb|redbox|) haben den Standardtitel \texttt{Achtung!} und keinen Index. \par
+			\fbox{
+				\begin{minipage}[t]{.9\textwidth}
+					\texttt{\textbackslash begin\{redbox\} \\ \hspace*{2em}
+						Dieser Satz ist wichtig.\\ 
+						\textbackslash end\{redbox\}
+					}
+					\begin{redbox}
+						Dieser Satz ist wichtig.
+					\end{redbox}
+				\end{minipage} 
+			}		
+			
+	\chapter{Nützlichkeiten}
+		\section{Codeschnipsel}
+			Dieses Kapitel listet ein paar Codeschnipsel auf, die beim täglichen Gebrauch von \LaTeX\ helfen können.
+			\begin{description}
+				\item[Bedeutung eines Makros:]
+					\verb|\meaning\<makroname>|. Beispielsweise liefert\\\verb|\meaning\makeatletter| Folgendes: \texttt{\meaning\makeatletter}
+				\item[Links setzen:]
+					\verb|\href{URL}{text}|: Beispielsweise ein Link \href{https://de.wikipedia.org/wiki/LaTeX}{zu Wikipedia}.
+			\end{description}
+			
+		\section{Makroprogrammierung in ${\mathrm {T\!_{\displaystyle E}\!X}}$}
+			Der folgende Code implementiert ein einfaches Array:
+			\begin{verbatim}
+\newcounter{foo}
+
+\makeatletter
+    \def\pisarzy@i 	{Krzysztof Kamil Baczyński}
+    \def\pisarzy@ii	{Stanisław Barańczak}
+    \def\pisarzy@iii{Anna Brzezińska}
+    \def\pisarzy@iv {Ewa Lipska}
+\makeatother
+
+\def\pisarzy[#1]{%                            <-- Anmerkung
+    \setcounter{foo}{#1}%
+    \item %
+    \makeatletter %
+    \csname pisarzy@\roman{foo}\endcsname%
+    \makeatother %
+}
+			\end{verbatim}
+			\newcounter{foo}
+			
+			\makeatletter
+				\def\pisarzy@i 	{Krzysztof Kamil Baczyński}
+				\def\pisarzy@ii	{Stanisław Barańczak}
+				\def\pisarzy@iii{Anna Brzezińska}
+				\def\pisarzy@iv {Ewa Lipska}
+			\makeatother
+			
+			\def\pisarzy[#1]{%
+				\setcounter{foo}{#1}%
+				\item %
+				\makeatletter %
+				\csname pisarzy@\roman{foo}\endcsname%
+				\makeatother %
+			}
+			
+			\newpage
+			So greift man auf die Felder zu: 
+			
+			\begin{verbatim}
+\begin{itemize}
+    \pisarzy[1]
+    \pisarzy[2]
+    \pisarzy[3]
+    \pisarzy[4]
+\end{itemize}
+			\end{verbatim}
+			
+			\begin{itemize}
+				\pisarzy[1]
+				\pisarzy[2]
+				\pisarzy[3]
+				\pisarzy[4]
+			\end{itemize}
+			
+			\emph{Anmerkung:} Man könnte hier auch \verb|\def\pisarzy--#1--]| schreiben, dann greift man auf die Felder mit \verb|\pisarzy --42--]| zu.
+			
+			\emph{Basierend auf} dem \href{http://pgfplots.sourceforge.net/TeX-programming-notes.pdf}{Skript von C. Feuersänger}.
+	% ------------------------------------------------------------------------------------------------------------------
+
+%	\appendix		
+%	\chapter{Änderungen/Changelog}
+%		\begin{longtable}{|c|p{10cm}|}
+%			\hline
+%			\bf Version 				& \bf Änderungen 											\\
+%			\hline
+%			5.15						& 	\begin{itemize}
+%												\item[+] Neues Paket \texttt{todonotes} hinzu.		
+%											\end{itemize} 											\\
+%			\hline
+%		\end{longtable}
+\end{document}
