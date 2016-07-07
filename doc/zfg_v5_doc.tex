@@ -1,13 +1,16 @@
 \def\dokumentTyp{Skript} 	
 
+
+\def\hauptsprache{ngerman}
+\def\andereSprachen{}
 \input{../mircol-v5}
 
 \pgfqkeys{/VorlageVersion5}{
 	all/Autoren						= {Mirco Lukas},
 	all/Titel	 					= {Dokumentation zur \LaTeX-Vorlage},
-	all/Untertitel 					= {Version~V5},
-	all/VersionPraefix 				= {v5.50},
-	all/Version 					= {true},
+	all/Untertitel 					= {Version~V5.2},
+	all/VersionPraefix 				= {v5},
+	all/Version 					= {false},
 	all/Icon/Breite					= {1},
 	all/Icon/URL					= {http://www.el-celta.de/latex2.gif},
 	all/Index/Boxen/blau/zeigen		= {false},
@@ -79,6 +82,16 @@
 
 	
 	\section{Dokumenteinstellungen}
+		\subsection{Einstellungen vor dem Einbinden der Datei \texttt{mircol-v5.tex}}
+			Die folgenden Einstellungen beeinflussen die Pakete \texttt{babel} und \texttt{varioref}:
+			\begin{tabbing}
+				mmmmmmmmmmm 			\= m \kill
+				\bf Befehl				\> \bf Erklärung \\
+				\verb|\hauptsprache|	\> Die Hauptsprache des Dokuments, \zb \verb|ngerman|, \verb|english|, \\
+										\> \verb|polish|, \verb|russian|  \\
+				\verb|\andereSprachen|	\> eine Liste weiterer Sprachen, die im Dokument vorkommen \\
+										\> (durch Kommata getrennt)
+			\end{tabbing}
 		\subsection{Arrays}
 			Es werden folgende Arrays definiert. Felder werden \emph{ohne Leerzeichen} mit "`\&"' getrennt: \verb|all/Autoren = {Alice&Bob}|.
 			\begin{tabbing}

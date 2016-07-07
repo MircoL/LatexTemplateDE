@@ -21,6 +21,11 @@
 }[\errmessage{Ungueltiger Dokumenttyp: \dokumentTyp}\stop]
 
 
+% =====================================================
+%    Kompatibilitätseinstellungen für ältere Versionen
+% =====================================================
+\providecommand{\hauptsprache}{ngerman}
+\providecommand{\andereSprachen}{english,polish,russian}
 
 % =====================================================
 %    Pakete
@@ -40,7 +45,7 @@
 
 \usepackage{amssymb}
 
-\usepackage[russian,polish,english,main=ngerman]{babel}
+\usepackage[main=\hauptsprache,\andereSprachen]{babel}
 
 % Tabelle farbig markieren: \columncolor{wunschfarbe} \rowcolor{}, \cellcolor{}
 \usepackage{colortbl} 
@@ -100,7 +105,7 @@
 
 
 
-\usepackage[ngerman]{varioref}
+\usepackage[\hauptsprache]{varioref}
 
 \usepackage{wasysym}
 
