@@ -1,8 +1,9 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%	Vorlage für LaTeX-Dokument
-%	Autor: 		Mirco Lukas
-%	Version:	v5.15
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   LaTeX-Arbeitsvorlage, Version 5.2                  	  	%
+%   Autor: 		Mirco Lukas <http://mircol.de>              %
+%   Lizenz: 	The MIT License (MIT)						%
+%   Updates: 	https://github.com/MircoL/LatexTemplateDE   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage{xstring}
 
@@ -249,6 +250,10 @@
 \newcommand{\ua}{u.\,a.\xspace}
 \newcommand{\Ua}{U.\,a.\xspace}
 
+\newcommand{\va}{v.\,a.\xspace}
+\newcommand{\Va}{V.\,a.\xspace}
+
+
 \newcommand{\wiki}[1]{\href{#1}{Wikipedia}}
 
 \newcommand{\zb}{z.\,B.\xspace}
@@ -349,7 +354,7 @@
 	\end{quote}%
 }
 \newenvironmentx{quotationx}[2][1={},2={default}]{%
-	\renewcommand{\tmpQuotex}{#1}
+	\renewcommand{\tmpQx}{#1}
 	\begin{quotation}%
 		\IfStrEqCase{#2}{
 			{tt}{ \tt }%
