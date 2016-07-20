@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%   LaTeX-Arbeitsvorlage, Version 5.2                  	  	%
+%   LaTeX-Arbeitsvorlage, Version 5.3                  	  	%
 %   Autor: 		Mirco Lukas <http://mircol.de>              %
 %   Lizenz: 	The MIT License (MIT)						%
 %   Updates: 	https://github.com/MircoL/LatexTemplateDE   %
@@ -16,7 +16,7 @@
 
 \IfStrEqCase{\dokumentTyp}{
 	{Skript}{\documentclass[12pt,ngerman,openany,numbers=noenddot,listof=totoc,bibliography=totoc,oneside]{scrbook}}%
-	{Mitschrift}{\documentclass[a4paper,12pt,ngerman,oneside]{article}}%
+	{Mitschrift}{\documentclass[a4paper,12pt,ngerman,oneside]{scrartcl}}%
 	{Buch}{\documentclass[paper=a5,pagesize,footheight=-3cm]{scrbook}}%
 	{Praesentation}{\documentclass{beamer}}%
 }[\errmessage{Ungueltiger Dokumenttyp: \dokumentTyp}\stop]
