@@ -1,6 +1,5 @@
 \def\dokumentTyp{Skript} 	
 
-
 \def\hauptsprache{ngerman}
 \def\andereSprachen{}
 \input{../mircol-v5}
@@ -8,7 +7,7 @@
 \pgfqkeys{/VorlageVersion5}{
 	all/Autoren						= {Mirco Lukas},
 	all/Titel	 					= {Dokumentation zur \LaTeX-Vorlage},
-	all/Untertitel 					= {Version~V5.3},
+	all/Untertitel 					= {Eine \LaTeX-Vorlage mit vielen vordefinierten Befehlen.\par Version~5.4},
 	all/VersionPraefix 				= {v5},
 	all/Version 					= {false},
 	all/Icon/Breite					= {1},
@@ -29,11 +28,14 @@
 \usepackage{pdfpages}
 \newcommand{\incpdf}[1]{\includepdf[pages=-,frame= true,delta=3mm 3mm]{#1}}
 
-\begin{document}
-%		Dieses Dokument ist die Doku zur \LaTeX-Vorlage von \name{Mirco Lukas}. Sie listet insbesondere selbstdefinierte Befehle und Umgebungen auf.
+ \begin{document}
+ 	
+ 	\chapter*{Weblink}
+	 	Updates der Vorlage und dieser Dokumentation können auf \name{GitHub} heruntergeladen werden: 
+	 	\begin{center}
+	 		\url{https://github.com/MircoL/LatexTemplateDE}
+	 	\end{center}
 
-	% ------------------------------------------------------------------------------------------------------------------
-	
 	\chapter{Grundeinstellungen für Dokumente}
 		\section{Der \texttt{\textbackslash dokumentTyp}}
 			\index{dokumentTyp@\texttt{dokumentTyp}}
@@ -517,18 +519,5 @@
 			
 			\emph{Anmerkung:} Man könnte hier auch \verb|\def\pisarzy--#1--]| schreiben, dann greift man auf die Felder mit \verb|\pisarzy --42--]| zu.
 			
-			\emph{Basierend auf} dem \href{http://pgfplots.sourceforge.net/TeX-programming-notes.pdf}{Skript von C. Feuersänger}.
-	% ------------------------------------------------------------------------------------------------------------------
-
-%	\appendix		
-%	\chapter{Änderungen/Changelog}
-%		\begin{longtable}{|c|p{10cm}|}
-%			\hline
-%			\bf Version 				& \bf Änderungen 											\\
-%			\hline
-%			5.15						& 	\begin{itemize}
-%												\item[+] Neues Paket \texttt{todonotes} hinzu.		
-%											\end{itemize} 											\\
-%			\hline
-%		\end{longtable}
+			Basierend auf dem \href{http://pgfplots.sourceforge.net/TeX-programming-notes.pdf}{Skript von C. Feuersänger}.
 \end{document}
