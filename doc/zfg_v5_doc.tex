@@ -215,8 +215,8 @@
 				\item \verb|Dieser Satz ist falsch. \qed| \\
 						Dieser Satz ist falsch. \qed
 			\end{enumeratealpha}
-		\section{Umdefinition vorhandener Befehle}
-			Die folgenden \TeX-/\LaTeX-Befehle wurden umdefiniert. Der Befehl \verb|\relax| deaktiviert ein Kommando.
+		\section{Umdefinieren vorhandener Befehle}
+			Die folgenden \TeX-/\LaTeX-Befehle erhielten eine neue Bedeutung. 
 			\begin{tabbing}
 				mmmmmm			\= mmmmmmmmmmm			\= \kill
 				\bf Befehl 		\> \bf Neue Bedeutung	\> \bf Bemerkung																										\\
@@ -226,6 +226,21 @@
 				\verb|\epsilon|	\> $\epsilon$			\> $\epsilonOld$ = \verb|\epsilonOld|																					\\
 				\verb|\phi|		\> $\phi$				\> $\phiOld$ = \verb|\phiOld|
 			\end{tabbing}
+		\section{Deaktivierung vorhandener Befehle}
+			Der Befehl \verb|\let<\befehl>\relax| deaktiviert ein Kommando. So kann man etwa den Befehl \verb|\qed| mit \verb|\let\qed\relax| abschalten:\\ 
+			
+			\fbox{
+				\begin{minipage}[t]{.9\textwidth}
+					\texttt{\textbackslash qed   \textbackslash let \textbackslash qed \textbackslash relax 	\textbackslash qed}
+				\begingroup				
+					\qed \let\qed\relax \qed
+				\endgroup
+			\end{minipage}
+			}
+			\vspace*{1em}\\
+			  Das zweite qed-Zeichen wird durch \verb|\relax| unterdrückt.
+			
+		\newpage
 		\section{Gängige Abkürzungen}
 			Die folgenden Befehle geben die Abkürzung aus, für die sie stehen, wobei zwischen den Wörtern ein Achtelgeviert-Abstand eingefügt wird.
 			\begin{tabbing}
@@ -250,11 +265,11 @@
 			\label{begriffsdefinitionen}
 			Der Befehl \verb|\neuerbegriff{}| kennzeichnet einen Begriff durch Umrahmung:
 			\begin{quotex}[\href{https://de.wikipedia.org/wiki/Betriebssystem}{Wikipedia}]
-				Ein \neuerbegriff{Betriebssystem} ist eine Zusammenstellung von Computerprogrammen, die die Systemressourcen eines Computers wie Arbeitsspeicher, Festplatten, Ein- und Ausgabegeräte verwaltet und diese Anwendungsprogrammen zur Verfügung stellt. 
+				Ein \neuerbegriff{Betriebssystem} ist eine Zusammenstellung von Computerprogrammen, die die Systemressourcen eines Computers [\ellipse] zur Verfügung stell1t. 
 			\end{quotex}
 			Der Befehl \verb|\neuerbegriffIdx{}| funktioniert wie folgt:
 			\begin{itemize}
-				\item Gibt man nur einen Parameter an, so erscheint der Text an der Stelle des Befehls und der gleiche Text steht im Index: \verb|\neuerbegriffIdx{Betriebssystem}| gibt \texttt{Betriebssystem} aus und schreibt auch \texttt{Betriebssystem} in den Index.
+				\item Gibt man nur einen Parameter an, so erscheint der Text anstelle des Befehls und der gleiche Text steht im Index: \verb|\neuerbegriffIdx{Betriebssystem}| gibt \texttt{Betriebssystem} aus und schreibt auch \texttt{Betriebssystem} in den Index.
 				\item Der optionale Parameter bietet die Möglichkeit, einen abweichenden Text in den Index zu schreiben. Dies ist nützlich für Index-Befehle oder falls der Begriff flektiert ist:
 					\begin{quote}
 						\verb|\neuerbegriffIdx[Betriebssystem, Definition]{Betriebssysteme}| sind \verb|\ellipse|
