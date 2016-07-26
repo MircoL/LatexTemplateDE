@@ -7,8 +7,8 @@
 \pgfqkeys{/VorlageVersion5}{
 	all/Autoren						= {Mirco Lukas},
 	all/Titel	 					= {Dokumentation zur \LaTeX-Vorlage},
-	all/Untertitel 					= {Eine \LaTeX-Vorlage mit vielen vordefinierten Befehlen.\par Version~5.4},
-	all/VersionPraefix 				= {v5},
+	all/Untertitel 					= {Eine \LaTeX-Vorlage mit vielen vordefinierten Befehlen\par Version~5.5},
+	all/VersionPraefix 				= {},
 	all/Version 					= {false},
 	all/Icon/Breite					= {1},
 	all/Icon/URL					= {http://www.el-celta.de/latex2.gif},
@@ -27,14 +27,22 @@
 
 \usepackage{pdfpages}
 \newcommand{\incpdf}[1]{\includepdf[pages=-,frame= true,delta=3mm 3mm]{#1}}
+\newcommand{\doubleplus}{double\textsuperscript{+}}
+\newcommand{\pangramm}[1][]{%
+	Asynchrone Bas\ifthenelse{\equal{#1}{}}{s}{s:}klänge vom Jazzquintett sind nix für spießige Löwen.\\
+	abcdefghijklmnopqr\ifthenelse{\equal{#1}{}}{}{s:}s{}tuvwxyzäüöß \hspace*{2em} 0123456789\\
+	ABCDEFGHIJKLMNOPQRSTUVWXYZÄÜÖ\\
+	Zażółć gęślą jaźń%
+}
 
- \begin{document}
+\begin{document}
  	
- 	\chapter*{Weblink}
+ 	\chapter*{Weblink zum Download der Vorlage}
 	 	Updates der Vorlage und dieser Dokumentation können auf \name{GitHub} heruntergeladen werden: 
 	 	\begin{center}
 	 		\url{https://github.com/MircoL/LatexTemplateDE}
 	 	\end{center}
+	 
 
 	\chapter{Grundeinstellungen für Dokumente}
 		\section{Der \texttt{\textbackslash dokumentTyp}}
@@ -95,7 +103,7 @@
 										\> (durch Kommata getrennt)
 			\end{tabbing}
 		\subsection{Arrays}
-			Es werden folgende Arrays definiert. Felder werden \emph{ohne Leerzeichen} mit "`\&"' getrennt: \verb|all/Autoren = {Alice&Bob}|.
+			Es werden folgende Arrays definiert. Die einzelnen Felder werden \emph{ohne Leerzeichen} mit "`\&"' voneinander getrennt: \verb|all/Autoren = {Alice&Bob}|.
 			\begin{tabbing}
 				mmmmmmmmmmmm 		\= mmmmmmmmmmmmmmmm				\=	mmmmmmmmmm	\kill
 				\bf Name des Arrays	\> \bf Inhalt 					\> \bf Dokumentklassen\\
@@ -110,8 +118,8 @@
 						Genau eines der Werte \texttt{true} oder \texttt{false}.
 				\item[integer:]
 						Eine positive, ganze Zahl ($n \in \mathbb N^+ = \{1, \, 2, \, \ldots\}$)
-				\item[double:]
-						Eine positive Zahl ($n \in \mathbb Q^+$)
+				\item[\doubleplus:]
+						Eine positive Dezimalzahl ($n \in \mathbb Q^+$) mit Dezimalpunkt, \zb "`2.3"'
 				\item[length:]
 						Eine Zahl plus Einheit, \zb "`12em"'; "`42pt"'
 				\item[url:]
@@ -127,7 +135,7 @@
 				all/Untertitel 					\> Untertitel							\> string			\\
 				all/VersionPraefix 				\> Präfix der Versionsangabe			\> string			\\
 				all/Version 					\> Anzeigen der Version					\> boolean 			\\
-				all/Icon/Breite					\> Breite des Titelbildes				\> double 			\\
+				all/Icon/Breite					\> Breite des Titelbildes				\> \doubleplus 		\\
 				all/Icon/URL					\> URL des Titelbildes					\> url				\\
 				all/Index/Boxen/blau/zeigen 	\> Zeige den Index aller blauen Boxen	\> boolean 			\\
 				all/Index/Boxen/blau/titel 		\> Titel des Index' aller blauen Boxen	\> string			\\
@@ -159,8 +167,8 @@
 			\end{tabbing}
 			\textbf{Besonderheiten:}
 			\begin{itemize}
-				\item Als Titelbild wird die Datei \texttt{titel.jpg} verwendet. Ist sie nicht vorhanden, bleiben die dazugehörigen Befehle ohne Wirkung.
-				\item Als Literaturliste wird die Datei \texttt{quellen.bib} verwendet.
+				\item Als Titelbild wird die Datei \texttt{titel.jpg} verwendet. Ist diese Datei im Arbeitsverzeichnis nicht vorhanden, bleiben die dazugehörigen Befehle ohne Wirkung.
+				\item Als Literaturliste wird die Datei \texttt{quellen.bib} verwendet. Ist diese Datei im Arbeitsverzeichnis nicht vorhanden, so wird keine Literaturliste erzeugt.
 			\end{itemize}
 
 
@@ -169,10 +177,10 @@
 
 	\chapter{Eigene Befehle}
 		\section{Allgemeine Befehle}
-			Ein Stern gibt an, dass der Parameter optional ist. 
+			Ein Stern gibt an, dass der jeweilige Parameter optional ist. 
 			\begin{tabbing}
-				mmmmmmmmmmm			\= mmmmmmmmmmmmmmm							\= mmmmmmmmmm			\= \kill
-				\bf Befehl			\> \bf Beschreibung							\> \bf Ergebnis 		\> \bf Parameter 				\\
+				mmmmmmmmmm			\= mmmmmmmmmmmmmmmm							\= mmmmmmmmmm			\= \kill
+				\bf Befehl			\> \bf Beschreibung/Anmerkung				\> \bf Ergebnis 		\> \bf Parameter 				\\
 				\verb|\andd|		\> Ein Synonym für \verb|\wedge|			\> $\andd$ 				\> ---							\\
 				\verb|\aufgabe|		\> Nützlich für Übungsblätter				\> Aufgabe \#1 			\> \#1: Nr. der Aufgabe 		\\
 				\verb|\bigandd|		\> Ein Synonym für \verb|\bigwedge|			\> $\bigandd$ 			\> --- 							\\
@@ -186,23 +194,23 @@
 				\verb|\ellipse|		\> Eine Ellipse	 (\href{https://de.wikipedia.org/wiki/Auslassungspunkte}{Wikipedia})
 									\> \ellipse				\> ---							\\
 				\verb|\fallunterscheidung|\\
-									\> Für Fallunterscheidungen					\> Anm. a)				\> \#1*: Ein Präfix.			\\
+									\> Für Fallunterscheidungen					\> vgl. Anm. a)			\> \#1*: Ein Präfix.			\\
 									\>											\>						\> \#2: Der obere Fall			\\
 									\>											\>						\> \#3: Der untere Fall			\\
-				\verb|\fuer|		\> Für Fallunterscheidungen					\> Anm. a)				\> ---							\\
+				\verb|\fuer|		\> Für Fallunterscheidungen					\> vgl. Anm. a)			\> ---							\\
 				\verb|\length|		\> Kurz für $|$Text$|$						\> \length{Text}		\> \#1: ein Text				\\
 				\verb|\name|		\> Ein Text in Kapitälchen					\> \name{Der Autor}		\> \#1: ein Name				\\
 				\verb|\neuerbegriff|\> Einführung eines Begriffs				\> Siehe Abschn. \ref{begriffsdefinitionen}				\\
 				\verb|\neuerbegriffIdx| 
 									\>Einführung eines Begriffs					\> Siehe Abschn. \ref{begriffsdefinitionen}				\\
 				\verb|\orr|			\> Ein Synonym für \verb|\vee|				\> $\orr$ 				\> ---							\\
-				\verb|\sonst|		\> Für Fallunterscheidungen					\> Anm. a)				\> ---							\\
+				\verb|\sonst|		\> Für Fallunterscheidungen					\> vgl. Anm. a)			\> ---							\\
 				\verb|\teilaufgabe|	\> Nützlich für Übungsblätter				\> TA \verb|\aufgabe|.\#1 	
 																										\> \#1: Nr. der Teilaufgabe 	\\
 				\verb|\textmarker|	\> Ein Textmarker							\> \textmarker{green}{Text}
 																										\> \#1: Farbe des Markers		\\
 									\>											\>						\> \#2: Der zu mark. Text 		\\
-				\verb|\qed|			\> Eine Box am Ende der Zeile				\> Anm. b)				\> ---							\\
+				\verb|\qed|			\> Eine Box am Ende der Zeile				\> vgl. Anm. b)			\> ---							\\
 				\verb|\wiki|		\> Ein Link zu Wikipedia					\>\wiki{https://de.wikipedia.org/wiki/LaTeX}
 																										\> \#1: Eine Wiki-URL			\\
 									\>  (hier \texttt{https://de.wikipedia.org/wiki/LaTeX})
@@ -210,10 +218,24 @@
 			\newpage
 			\textbf{Anmerkungen:}
 			\begin{enumeratealpha}
-				\item \verb|\fallunterscheidung[\operatorname{abs}(x) =]{x \fuer x \geq 0,}{-x \sonst.}|
-						\fallunterscheidung[\operatorname{abs}(x) =]{x \fuer x \geq 0,}{-x \sonst.}
+				\item \verb|\fallunterscheidung[\operatorname{abs}(x) =]|\\
+					  \verb|                              {x \fuer x \geq 0,}{-x \sonst.}| \\
+						\frame{
+							\begin{minipage}[t]{.9\textwidth}
+								\bigskip
+								\ \fallunterscheidung[\operatorname{abs}(x) =]{x \fuer x \geq 0,}{-x \sonst.}
+								\bigskip
+							\end{minipage}
+						}
 				\item \verb|Dieser Satz ist falsch. \qed| \\
-						Dieser Satz ist falsch. \qed
+					\frame{
+						\begin{minipage}[t]{.9\textwidth}
+							\bigskip
+							\ Dieser Satz ist falsch. \qed
+							\bigskip
+						\end{minipage}
+					}
+						
 			\end{enumeratealpha}
 		\section{Umdefinieren vorhandener Befehle}
 			Die folgenden \TeX-/\LaTeX-Befehle erhielten eine neue Bedeutung. 
@@ -227,28 +249,36 @@
 				\verb|\phi|		\> $\phi$				\> $\phiOld$ = \verb|\phiOld|
 			\end{tabbing}
 		\section{Deaktivierung vorhandener Befehle}
-			Der Befehl \verb|\let<\befehl>\relax| deaktiviert ein Kommando. So kann man etwa den Befehl \verb|\qed| mit \verb|\let\qed\relax| abschalten:\\ 
+			Der Befehl \verb|\let<\befehl>\relax| deaktiviert ein Kommando. So kann man etwa den Befehl \verb|\qed| mit \verb|\let\qed\relax| abschalten:
+			\begin{verbatim}
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. \qed   \\
+\let\qed\relax 
+Aenean massa. Cum sociis natoque penatibus et magnis.     \qed
+			\end{verbatim} 
 			
 			\fbox{
 				\begin{minipage}[t]{.9\textwidth}
-					\texttt{\textbackslash qed   \textbackslash let \textbackslash qed \textbackslash relax 	\textbackslash qed}
+					\bigskip
 				\begingroup				
-					\qed \let\qed\relax \qed
+					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. \qed   \\
+					\let\qed\relax 
+					Aenean massa. Cum sociis natoque penatibus et magnis.     \qed
 				\endgroup
+					\bigskip
 			\end{minipage}
 			}
 			\vspace*{1em}\\
-			  Das zweite qed-Zeichen wird durch \verb|\relax| unterdrückt.
+			  Das zweite \texttt{qed}-Zeichen wird durch \verb|\relax| unterdrückt.
 			
 		\newpage
 		\section{Gängige Abkürzungen}
-			Die folgenden Befehle geben die Abkürzung aus, für die sie stehen, wobei zwischen den Wörtern ein Achtelgeviert-Abstand eingefügt wird.
+			Die folgenden Befehle erleichtern die Verwendung von Abkürzungen. Zwischen die einzelnen Bestandteile sollte ein Achtelgeviert-Zwischenraum eingefügt wird. Das übliche Leerzeichen ist \idr ein Halbgeviert groß (Mehr Infos in der \wiki{https://de.wikipedia.org/wiki/Geviert_(Typografie)}).
 			\begin{tabbing}
 				mmmmmmm			\= mmmmmmmmmmmmmm						\= \kill
 				Vergleiche		\>\texttt{o.$\sim$B.$\sim$d.$\sim$A.}:	\> Es sei o.~B.~d.~A. $x>0$.\\
 				und				\>\verb|\obda|=\verb|o.\,b.\,d.\,a.|:	\> Es sei \obda $x>0$.
 			\end{tabbing}
-			Alle Befehle gibt es auch mit Großbuchstaben (\verb|\zB| -- \verb|\ZB|) am Anfang, etwa für Satzanfänge.
+			Alle Befehle gibt es auch mit Großbuchstaben (\verb|\zb| -- \verb|\Zb|) am Anfang, etwa für Satzanfänge.
 			\begin{tabbing}
 				mmmmmmmmm						\= mmmmmmmmmmmmmmmmmmmmm		\=\kill
 				\bf Befehl						\> \bf Bedeutung 				\> \bf Bemerkung\\
@@ -263,18 +293,84 @@
 			\end{tabbing}
 		\section{Begriffsdefinitionen}
 			\label{begriffsdefinitionen}
-			Der Befehl \verb|\neuerbegriff{}| kennzeichnet einen Begriff durch Umrahmung:
-			\begin{quotex}[\href{https://de.wikipedia.org/wiki/Betriebssystem}{Wikipedia}]
-				Ein \neuerbegriff{Betriebssystem} ist eine Zusammenstellung von Computerprogrammen, die die Systemressourcen eines Computers [\ellipse] zur Verfügung stell1t. 
-			\end{quotex}
-			Der Befehl \verb|\neuerbegriffIdx{}| funktioniert wie folgt:
+			Der Befehl \verb|\neuerbegriff{}| hebt einen Begriff hervor, indem er rot umrahmt und zusätzlich grau hinterlegt wird:
+			\begin{verbatim}
+				\begin{quotex}[\wiki{https://de.wikipedia.org/wiki/Betriebssystem}]
+				      Ein \neuerbegriff{Betriebssystem} ist eine Zusammenstellung 
+				      von Computerprogrammen, die die Systemressourcen eines 
+				      Computers wie Arbeitsspeicher, Festplatten, Ein- und 
+				      Ausgabegeräte verwaltet und diese Anwendungsprogrammen 
+				      zur Verfügung stellt. 
+				\end{quotex}
+			\end{verbatim}
+			
+			\fbox{
+				\begin{minipage}[t]{\textwidth}
+					\bigskip
+					\begin{quotex}[\wiki{https://de.wikipedia.org/wiki/Betriebssystem}]
+						Ein \neuerbegriff{Betriebssystem} ist eine Zusammenstellung 
+						von Computerprogrammen, die die Systemressourcen eines 
+						Computers wie Arbeitsspeicher, Festplatten, Ein- und 
+						Ausgabegeräte verwaltet und diese Anwendungsprogrammen 
+						zur Verfügung stellt. 
+					\end{quotex}
+					\bigskip
+				\end{minipage}
+			}
+			
+			\newpage
+			Der Befehl \verb|\neuerbegriffIdx{}| markiert den durch den Parameter gegebenen Text analog zu \verb|\neuerbegriff{}|, fügt ihn aber zusätzlich in das Stichwortverzeichnis ein. Er funktioniert wie folgt:
 			\begin{itemize}
-				\item Gibt man nur einen Parameter an, so erscheint der Text anstelle des Befehls und der gleiche Text steht im Index: \verb|\neuerbegriffIdx{Betriebssystem}| gibt \texttt{Betriebssystem} aus und schreibt auch \texttt{Betriebssystem} in den Index.
-				\item Der optionale Parameter bietet die Möglichkeit, einen abweichenden Text in den Index zu schreiben. Dies ist nützlich für Index-Befehle oder falls der Begriff flektiert ist:
-					\begin{quote}
-						\verb|\neuerbegriffIdx[Betriebssystem, Definition]{Betriebssysteme}| sind \verb|\ellipse|
-					\end{quote}
-				schreibt \neuerbegriff{\texttt{Betriebssysteme}} \texttt{sind\ldots} anstelle des Befehls in den Text und \texttt{Betriebssystem, Definition} in den Index.
+				\item 
+					Gibt man nur einen Parameter an, so erscheint der Text anstelle des Befehls und der gleiche Text steht im Index: \\
+					\begin{verbatim}
+						\begin{quotex}[\wiki{https://de.wikipedia.org/wiki/Betriebssystem}]
+						     Ein \neuerbegriffIdx{Betriebssystem} ist eine Zusammenstellung 
+						     von Computerprogrammen, die die Systemressourcen eines 
+						     Computers wie Arbeitsspeicher, Festplatten, Ein- und 
+						     Ausgabegeräte verwaltet und diese Anwendungsprogrammen 
+						     zur Verfügung stellt. 
+						\end{quotex}
+					\end{verbatim}
+					
+					\fbox{
+						\begin{minipage}[t]{\textwidth}
+							\bigskip
+							\begin{quotex}[\wiki{https://de.wikipedia.org/wiki/Betriebssystem}]
+								Ein \neuerbegriffIdx{Betriebssystem} ist eine Zusammenstellung 
+								von Computerprogrammen, die die Systemressourcen eines 
+								Computers wie Arbeitsspeicher, Festplatten, Ein- und 
+								Ausgabegeräte verwaltet und diese Anwendungsprogrammen 
+								zur Verfügung stellt. 
+							\end{quotex}
+							\bigskip
+						\end{minipage}
+					}
+					
+					Im Index wird \texttt{Betriebssystem} stehen.
+				
+				\item 
+					Der optionale Parameter bietet die Möglichkeit, einen abweichenden Text in den Index zu schreiben. Dies ist nützlich für Index-Befehle oder falls der Begriff flektiert ist:
+					\begin{verbatim}
+						\begin{quotex}[\wiki{https://de.wikipedia.org/wiki/Betriebssystem}]
+						     Betriebssysteme bestehen in der Regel aus einem Kernel [\ellipse]. 
+						     Zu diesen Aufgaben gehört unter anderem das Laden von 
+						     \neuerbegriffIdx[Gerätetreiber, Einführung]{Gerätetreibern}.
+						\end{quotex}
+					\end{verbatim}
+					
+					\fbox{
+						\begin{minipage}[t]{.9\textwidth}
+							\bigskip
+								\begin{quotex}[\wiki{https://de.wikipedia.org/wiki/Betriebssystem}]
+									Betriebssysteme bestehen in der Regel aus einem Kernel [\ellipse]. 
+									Zu diesen Aufgaben gehört unter anderem das Laden von 
+									\neuerbegriffIdx[Gerätetreiber, Einführung]{Gerätetreibern}.
+								\end{quotex}
+						\end{minipage}
+					}
+					
+					Im Index wird \texttt{Gerätetreiber, Einführung} stehen.
 			\end{itemize}
 
 
@@ -283,7 +379,7 @@
 
 	\chapter{Eigene Umgebungen}
 		\section{Übersicht}
-			Die Umgebungen werden mit \verb|\begin{name} ... \end{name}| umschlossen. Ein Stern gibt an, dass der Parameter optional ist. Beispiele siehe unten.
+			Die Umgebungen werden mit \verb|\begin{name} ... \end{name}| umschlossen. Ein Stern gibt an, dass der Parameter optional ist.
 			\begin{tabbing}
 				mmmmmmmmmm				\= mmmmmmmmmmmmmmmmmmm					\= mmmmmmmmmmm									\kill
 				\bf Befehl				\> \bf Beschreibung						\> \bf Parameter 								\\
@@ -302,50 +398,79 @@
 				\verb|quotationx|		\>	Analog zu \texttt{quotex}	\> Siehe Abschnitt \ref{quotex_quotationx}.
 			\end{tabbing}
 			
+			\noindent \textbf{Im Folgenden einige Beispiele.}
+			
+			\begin{verbatim}
+				\begin{enumeratealpha} 
+				     \item ein Item 
+				     \item ein Item 
+				\end{enumeratealpha}
+			\end{verbatim}
+			
 			\fbox{
 				\begin{minipage}[t]{.9\textwidth}
-					\texttt{\textbackslash begin\{enumeratealpha\} \\ \hspace*{2em}
-						\textbackslash item ein Item \textbackslash item ein Item  \\
-						\textbackslash end\{enumeratealpha\}}
-					\begin{enumeratealpha} \item ein Item \item ein Item \end{enumeratealpha}
+					\bigskip
+					\begin{enumeratealpha} 
+						\item ein Item 
+						\item ein Item 
+					\end{enumeratealpha}
 				\end{minipage}	
-			} \par
-			\fbox{
-				\begin{minipage}[t]{.9\textwidth}
-					\texttt{\textbackslash begin\{beispiel\}  \\ \hspace*{2em}
-						\textbackslash lipsum[3] \\
-					\textbackslash end\{beispiel\}}
-					\begin{beispiel} \lipsum[3] \end{beispiel}
-				\end{minipage}
-			}
-			\par
-			\fbox{
-				\begin{minipage}[t]{.9\textwidth}
-					\texttt{\textbackslash begin\{beispiele\}[zur Vorlesung]  \\ \hspace*{2em}
-						\textbackslash lipsum[3] \\
-					\textbackslash end\{beispiele\}}
-					\begin{beispiele}[zur Vorlesung] \lipsum[3] \end{beispiele}
-				\end{minipage}
-			}
-			\par
-			\fbox{
-				\begin{minipage}[t]{.9\textwidth}
-					\texttt{\textbackslash begin\{beweis\}[des Satzes 42]  \\ \hspace*{2em}
-						\textbackslash lipsum[3]  \\ 
-					\textbackslash end\{beweis\}}
-					\begin{beweis}[des Satzes 42] \lipsum[3] \end{beweis}
-				\end{minipage}
-			}
-		\section{Die Umgebungen \texttt{quotex} und \texttt{quotationx}}
-			\label{quotex_quotationx}
-			\newcommand{\pangramm}[1][]{%
-				Asynchrone Bas\ifthenelse{\equal{#1}{}}{s}{s:}klänge vom Jazzquintett sind nix für spießige Löwen.\\
-				abcdefghijklmnopqr\ifthenelse{\equal{#1}{}}{}{s:}s{}tuvwxyzäüöß \hspace*{2em} 0123456789\\
-				ABCDEFGHIJKLMNOPQRSTUVWXYZÄÜÖ\\
-				Zażółć gęślą jaźń%
 			}
 			
-			Die Umgebungen haben zwei Parameter, wobei beide optional sind
+			\newpage
+			
+			\begin{verbatim}
+				\begin{beispiel} 
+				     \lipsum[3] 
+				\end{beispiel}
+			\end{verbatim}
+			
+			\fbox{
+				\begin{minipage}[t]{.9\textwidth}
+					\bigskip
+					\begin{beispiel} 
+						\lipsum[3] 
+					\end{beispiel}
+					\bigskip					
+				\end{minipage}
+			}
+			
+			\begin{verbatim}
+				\begin{beispiele}[zur Vorlesung] 
+				     \lipsum[3] 
+				\end{beispiele}
+			\end{verbatim}
+			
+			\fbox{
+				\begin{minipage}[t]{.9\textwidth}
+					\bigskip
+					\begin{beispiele}[zur Vorlesung] 
+						\lipsum[3] 
+					\end{beispiele}
+					\bigskip
+				\end{minipage}
+			}
+			
+			\begin{verbatim}
+				\begin{beweis}[des Satzes 42] 
+				    \lipsum[3] 
+				\end{beweis}
+			\end{verbatim}
+					
+			\fbox{
+				\begin{minipage}[t]{.9\textwidth}
+					\bigskip
+					\begin{beweis}[des Satzes 42] 
+						\lipsum[3] 
+					\end{beweis}
+					\bigskip
+				\end{minipage}
+			}
+			
+		\section{Die Umgebungen \texttt{quotex} und \texttt{quotationx}}
+			\label{quotex_quotationx}
+			
+			Die Umgebungen \texttt{quotex} und \texttt{quotationx} haben jeweils zwei Parameter, wobei beide optional sind
 			\begin{itemize}
 				\item Der erste Parameter kann beispielsweise der Urheber eines Zitats oder die Angabe eine Quelle sein, \zb \texttt{Donald Knuth}.
 				\item Der zweite Parameter kann einer der Folgenden sein:
@@ -373,41 +498,125 @@
 				Das Paket \texttt{oesch.sty} steht auf manchen Systemen nicht zur Verfügung. In diesem Fall wird die {\oeschfamily Schreibschrift} durch eine einfache \emph{Kursivschrift} ersetzt. Es hift, wenn man die \href{https://www.ctan.org/tex-archive/fonts/oesch?lang=de}{Paketdatei von CTAN herunterlädt} und in den Ordner der Hauptdatei extrahiert. Die \texttt{Beispiel}- und \texttt{Readme}-Dateien können gelöscht werden.
 			\end{redbox}
 			
+			
+			\begin{verbatim}
+				\begin{quotex}[Wikipedia (ohne Parameter)] 
+				    \pangramm
+				\end{quotex}
+			\end{verbatim}
+			
 			\fbox{
 				\begin{minipage}[t]{.9\textwidth}
-					\texttt{\textbackslash begin\{quotex\}[Wikipedia][\ellipse] \\ \hspace*{2em}
-							\textbackslash pangramm \\ 
-					\textbackslash end\{quotex\}}
-					\begin{quotex}[Wikipedia (ohne)] 
+					\bigskip
+					\begin{quotex}[Wikipedia (ohne  Parameter)] 
 						\pangramm
 					\end{quotex}
-					\begin{quotex}[Wikipedia (tt)][tt] 
-							\pangramm
-					\end{quotex}
-					\begin{quotex}[Wikipedia (hand)][hand] 
-						\pangramm
-					\end{quotex}
-					\begin{quotex}[Wikipedia (fraktur)][fraktur]
-						\pangramm[!]
-					\end{quotex}
-					\begin{quotex}[Wikipedia (hand mit \texttt{\textbackslash let\textbackslash k\textbackslash relax})][hand]
-						\let\k\relax \pangramm
-					\end{quotex}
-				\end{minipage}	
+					\bigskip
+				\end{minipage}
 			}
+			
+			\begin{verbatim}
+				\begin{quotex}[Wikipedia mit Parameter "`tt"'][tt] 
+				    \pangramm
+				\end{quotex}
+			\end{verbatim}
+			
+			\fbox{
+				\begin{minipage}[t]{.9\textwidth}
+					\bigskip
+					\begin{quotex}[Wikipedia mit Parameter "`tt"'][tt] 
+						\pangramm
+					\end{quotex}
+					\bigskip
+				\end{minipage}
+			}
+			
+			\begin{verbatim}
+				\begin{quotex}[Wikipedia mit Parameter "`hand"'][hand]
+				\pangramm
+				\end{quotex}
+			\end{verbatim}
+			
+			\fbox{
+				\begin{minipage}[t]{.9\textwidth}
+					\bigskip
+					\begin{quotex}[Wikipedia mit Parameter "`hand"'][hand] 
+						\pangramm
+					\end{quotex}
+					\bigskip
+				\end{minipage}
+			}
+			
+			\begin{verbatim}
+				\begin{quotex}[Wikipedia mit Parameter "`fraktur"'][fraktur]
+				    \pangramm[:]
+				\end{quotex}
+			\end{verbatim}
+			
+			\fbox{
+				\begin{minipage}[t]{.9\textwidth}
+					\bigskip
+					\begin{quotex}[Wikipedia mit Parameter "`fraktur"'][fraktur] 
+						\pangramm[:]
+					\end{quotex}
+					\bigskip
+				\end{minipage}
+			}
+			
+			\begin{verbatim}
+				\begin{quotex}
+				          [Wikipedia mit Parameter "`fraktur"' und 
+					                \texttt{\textbackslash let%
+					                \textbackslash k%
+					                \textbackslash relax}
+					      ]
+				          [fraktur]
+				    \let\k\relax
+				    \pangramm[:]
+				\end{quotex}
+			\end{verbatim}
+			
+			\fbox{
+				\begin{minipage}[t]{.9\textwidth}
+					\bigskip
+						\begin{quotex}
+							[Wikipedia mit Parameter "`fraktur"' und 
+							\texttt{\textbackslash let%
+								\textbackslash k%
+								\textbackslash relax}
+							]
+							[fraktur]
+							\let\k\relax
+							\pangramm[:]
+						\end{quotex}
+					\bigskip
+				\end{minipage}
+			}
+			
+		\newpage
 		\section{Abstände}
 			\label{abstaende beweis beispiel}
 			Wenn die \texttt{beweis}- und den \texttt{beispiel(e)}-Umgebungen mit Aufzählungen beginnen bzw. enden, wird sowohl oben als auch unten ein zu großer Abstand eingefügt:
 			
+			\begin{verbatim}
+				\begin{beweis}[für P $\not=$ NP]
+				    \begin{itemize} 
+				        \item Text 
+				        \item Text 
+				     \end{itemize}
+				\end{beweis}
+			\end{verbatim}
+			
 			\fbox{
 				\begin{minipage}[t]{.9\textwidth}
-					\texttt{\textbackslash begin\{beweis\}[für P \$\textbackslash not=\$ NP] \\ \hspace*{2em}
-						\textbackslash begin\{itemize\} \textbackslash item Text \textbackslash item Text \textbackslash end\{itemize\} \\ 
-						\textbackslash end\{beweis\}
-					}
+					\bigskip
 					\begin{beweis}[für P $\not=$ NP]
-						\begin{itemize} \item Text \item Text \end{itemize}
+						\begin{itemize} 
+							\item Text 
+							\item Text 
+						\end{itemize}
 					\end{beweis}
+					\bigskip
 				\end{minipage}
 			}
 			
@@ -419,54 +628,84 @@
 				\item \texttt b schaltet beides ein.
 			\end{itemize}
 			
+			\newpage
+			
+			\begin{verbatim}
+				\begin{beweis}[für P $\not=$ NP][b]
+				    \begin{itemize} 
+				        \item Text 
+				        \item Text 
+				    \end{itemize}
+				\end{beweis}
+			\end{verbatim}
+			
 			\fbox{
 				\begin{minipage}[t]{.9\textwidth}
-					\texttt{\textbackslash begin\{beweis\}[für P \$\textbackslash not=\$ NP][b] \\ \hspace*{2em}
-						\textbackslash begin\{itemize\} \textbackslash item Text \textbackslash item Text \textbackslash end\{itemize\} \\ 
-						\textbackslash end\{beweis\}
-					}
+					\bigskip
 					\begin{beweis}[für P $\not=$ NP][b]
-						\begin{itemize} \item Text \item Text \end{itemize}
+						\begin{itemize} 
+							\item Text 
+							\item Text 
+						\end{itemize}
 					\end{beweis}
+					\bigskip
 				\end{minipage}
 			}
 			
 	\chapter{Farbige Boxen}
-		\section{Standardboxen}
-			Es gibt blaue, grüne und gelbe Boxen. Sie sind alle gleich aufgebaut. Die Umgebungen heißen \verb|blueboxIdx|, \verb|yellowboxIdx| und \verb|greenboxIdx|.
+		\section{Standardboxen (blau, grün, gelb)}
+			Es gibt blaue, grüne und gelbe Boxen. Sie werden alle auf die gleiche Weise benutzt. Sie wurden als Umgebungen namens \verb|blueboxIdx|, \verb|yellowboxIdx| und \verb|greenboxIdx| definiert und besitzen zwei Parameter, wobei der erste optional ist:
 			\begin{itemize}
-				\item Der erste Parameter ist ein optionales Label, auf den mit \verb|\ref| oder \verb|\vref| zugegriffen werden kann.
-				\item Der zweite Parameter ist der Titel der Box.
+				\item Der erste Parameter ist ein Label, auf den mit \verb|\ref| oder \verb|\vref| zugegriffen werden kann.
+				\item Der zweite Parameter ist der Titel der Box. Auf einen fortlaufenden Zähler kann mit \verb|\boxnummer| zugegriffen werden.
 			\end{itemize}
-			Auf einen Zähler kann mit \verb|\boxnummer| zugegriffen werden. \par
+			 
+			\begin{verbatim}
+				\begin{blueboxIdx}[TM-def]{Begriff \boxnummer: Turingmaschine}
+				     Eine \neuerbegriff{Turingmaschine} ist ein wichtiges Rechnermodell 
+				     der Theoretischen Informatik. Eine Turingmaschine modelliert die 
+				     Arbeitsweise eines Computers auf besonders einfache und 
+				     mathematisch gut zu analysierende Weise. Sie ist benannt nach dem 
+				     Mathematiker \name{Alan Turing}, der sie 1936 einführte.
+				\end{blueboxIdx}
+				
+				[\ellipse]
+				Die Turingmaschine wurde in Box \vref{TM-def} erläutert.
+			\end{verbatim}
+			 
 			\fbox{
 				\begin{minipage}[t]{.9\textwidth}
-					\texttt{\textbackslash begin\{blueboxIdx\}[Def einer blauen Box]\{Definition \textbackslash boxnummer: Eine Box\} \\ \hspace*{2em}
-						\textbackslash lipsum[3]\\ 
-						\textbackslash end\{blueboxIdx\}
-					}
-					\begin{blueboxIdx}[Def einer blauen Box]{Definition \boxnummer: Eine Box}
-						\lipsum[3]
-					\end{blueboxIdx}\par
-					Die Informationen sind in der Box \vref{Def einer blauen Box} (= \texttt{\textbackslash vref\{Def einer blauen Box\}}) zu finden.
+					\bigskip
+					\begin{blueboxIdx}[TM-def]{Begriff \boxnummer: Turingmaschine}
+						Eine \neuerbegriff{Turingmaschine} ist ein wichtiges Rechnermodell der Theoretischen Informatik. Eine Turingmaschine modelliert die Arbeitsweise eines Computers auf besonders einfache und mathematisch gut zu analysierende Weise. Sie ist benannt nach dem Mathematiker \name{Alan Turing}, der sie 1936 einführte.
+					\end{blueboxIdx}
+					
+					[\ellipse]
+					Die Turingmaschine wurde in Box \vref{TM-def} erläutert.
+					\bigskip
 				\end{minipage} 
 			}
 		\newpage
-		\section{Rote Boxen}
-			Rote Boxen (\verb|redbox|) haben den Standardtitel \texttt{Achtung!} und keinen Index. \par
+		\section{Warnboxen (rot)}
+			Rote Boxen (als \verb|redbox|-Umgebung definiert) haben als Titel stets \texttt{Achtung!}. Sie besitzen keinen eigenen Index.
+			
+			\begin{verbatim}
+				\begin{redbox}
+				     Dieser Satz ist wichtig.
+				\end{redbox}
+			\end{verbatim}
+			
 			\fbox{
 				\begin{minipage}[t]{.9\textwidth}
-					\texttt{\textbackslash begin\{redbox\} \\ \hspace*{2em}
-						Dieser Satz ist wichtig.\\ 
-						\textbackslash end\{redbox\}
-					}
+					\bigskip
 					\begin{redbox}
 						Dieser Satz ist wichtig.
 					\end{redbox}
+					\bigskip
 				\end{minipage} 
 			}		
 			
-	\chapter{Nützlichkeiten}
+	\chapter{Weitere nützliche Anmerkungen und Codebeispiele}
 		\section{Codeschnipsel}
 			Dieses Kapitel listet ein paar Codeschnipsel auf, die beim täglichen Gebrauch von \LaTeX\ helfen können.
 			\begin{description}
@@ -476,7 +715,7 @@
 					\verb|\href{URL}{text}|: Beispielsweise ein Link \href{https://de.wikipedia.org/wiki/LaTeX}{zu Wikipedia}.
 			\end{description}
 			
-		\section{Makroprogrammierung in ${\mathrm {T\!_{\displaystyle E}\!X}}$}
+		\section{Makroprogrammierung in ${\mathrm{T\!_{\displaystyle E}\!X}}$}
 			Der folgende Code implementiert ein einfaches Array:
 			\begin{verbatim}
 \newcounter{foo}
