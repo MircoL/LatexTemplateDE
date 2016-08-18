@@ -180,13 +180,13 @@
 			Ein Stern gibt an, dass der jeweilige Parameter optional ist. 
 			\begin{tabbing}
 				mmmmmmmmmm			\= mmmmmmmmmmmmmmmm							\= mmmmmmmmmm			\= \kill
-				\bf Befehl			\> \bf Beschreibung/Anmerkung				\> \bf Ergebnis 		\> \bf Parameter 				\\
-				\verb|\andd|		\> Ein Synonym für \verb|\wedge|			\> $\andd$ 				\> ---							\\
-				\verb|\aufgabe|		\> Nützlich für Übungsblätter				\> Aufgabe \#1 			\> \#1: Nr. der Aufgabe 		\\
-				\verb|\bigandd|		\> Ein Synonym für \verb|\bigwedge|			\> $\bigandd$ 			\> --- 							\\
-				\verb|\bigorr|		\> Ein Synonym für \verb|\bigvee|			\> $\bigorr$ 			\> --- 							\\
-				\verb|\blitz|		\> Ein Synonym für							\> \lightning\xspace 	\> ---							\\
-									\> \verb|\lightning\xspace|																			\\
+				\bf Befehl			\> \bf Beschreibung/Anmerkung				\> \bf Ergebnis 		\> \bf Parameter 					\\
+				\verb|\andd|		\> Ein Synonym für \verb|\wedge|			\> $\andd$ 				\> ---								\\
+				\verb|\aufgabe|		\> Nützlich für Übungsblätter				\> Aufgabe \#1 			\> \#1: Nr. der Aufgabe 			\\
+				\verb|\bigandd|		\> Ein Synonym für \verb|\bigwedge|			\> $\bigandd$ 			\> --- 								\\
+				\verb|\bigorr|		\> Ein Synonym für \verb|\bigvee|			\> $\bigorr$ 			\> --- 								\\
+				\verb|\blitz|		\> Ein Synonym für							\> \lightning\xspace 	\> ---								\\
+									\> \verb|\lightning\xspace|																				\\
 				\verb|\colorref(i)|	\> Farbige Referenzzeichen					\> $i=1:$ \colorref(1)	\> $i \in \{1, \, \ldots, \, 4\}$	\\
 									\>(\zb für Beweise)							\> $i=2:$ \colorref(2)										\\
 									\>											\> $i=3:$ \colorref(3)										\\
@@ -194,25 +194,25 @@
 				\verb|\ellipse|		\> Eine Ellipse	 (\href{https://de.wikipedia.org/wiki/Auslassungspunkte}{Wikipedia})
 									\> \ellipse				\> ---							\\
 				\verb|\fallunterscheidung|\\
-									\> Für Fallunterscheidungen					\> vgl. Anm. a)			\> \#1*: Ein Präfix.			\\
-									\>											\>						\> \#2: Der obere Fall			\\
-									\>											\>						\> \#3: Der untere Fall			\\
-				\verb|\fuer|		\> Für Fallunterscheidungen					\> vgl. Anm. a)			\> ---							\\
-				\verb|\length|		\> Kurz für $|$Text$|$						\> \length{Text}		\> \#1: ein Text				\\
-				\verb|\name|		\> Ein Text in Kapitälchen					\> \name{Der Autor}		\> \#1: ein Name				\\
-				\verb|\neuerbegriff|\> Einführung eines Begriffs				\> Siehe Abschn. \ref{begriffsdefinitionen}				\\
+									\> Für Fallunterscheidungen					\> vgl. Anm. a)			\> \#1*: Ein Präfix.				\\
+									\>											\>						\> \#2: Der obere Fall				\\
+									\>											\>						\> \#3: Der untere Fall				\\
+				\verb|\fuer|		\> Für Fallunterscheidungen					\> vgl. Anm. a)			\> ---								\\
+				\verb|\length|		\> Kurz für $|$Text$|$						\> \length{Text}		\> \#1: ein Text					\\
+				\verb|\name|		\> Ein Text in Kapitälchen					\> \name{Der Autor}		\> \#1: ein Name					\\
+				\verb|\neuerbegriff|\> Einführung eines Begriffs				\> Siehe Abschn. \ref{begriffsdefinitionen}					\\
 				\verb|\neuerbegriffIdx| 
-									\>Einführung eines Begriffs					\> Siehe Abschn. \ref{begriffsdefinitionen}				\\
-				\verb|\orr|			\> Ein Synonym für \verb|\vee|				\> $\orr$ 				\> ---							\\
-				\verb|\sonst|		\> Für Fallunterscheidungen					\> vgl. Anm. a)			\> ---							\\
+									\>Einführung eines Begriffs					\> Siehe Abschn. \ref{begriffsdefinitionen}					\\
+				\verb|\orr|			\> Ein Synonym für \verb|\vee|				\> $\orr$ 				\> ---								\\
+				\verb|\sonst|		\> Für Fallunterscheidungen					\> vgl. Anm. a)			\> ---								\\
 				\verb|\teilaufgabe|	\> Nützlich für Übungsblätter				\> TA \verb|\aufgabe|.\#1 	
-																										\> \#1: Nr. der Teilaufgabe 	\\
+																										\> \#1: Nr. der Teilaufgabe		 	\\
 				\verb|\textmarker|	\> Ein Textmarker							\> \textmarker{green}{Text}
-																										\> \#1: Farbe des Markers		\\
-									\>											\>						\> \#2: Der zu mark. Text 		\\
-				\verb|\qed|			\> Eine Box am Ende der Zeile				\> vgl. Anm. b)			\> ---							\\
+																										\> \#1: Farbe des Markers			\\
+									\>											\>						\> \#2: Der zu mark. Text 			\\
+				\verb|\qed|			\> Eine Box am Ende der Zeile				\> vgl. Anm. b)			\> ---								\\
 				\verb|\wiki|		\> Ein Link zu Wikipedia					\>\wiki{https://de.wikipedia.org/wiki/LaTeX}
-																										\> \#1: Eine Wiki-URL			\\
+																										\> \#1: Eine Wiki-URL				\\
 									\>  (hier \texttt{https://de.wikipedia.org/wiki/LaTeX})
 			\end{tabbing}
 			\newpage
@@ -244,7 +244,7 @@
 				\bf Befehl 		\> \bf Neue Bedeutung	\> \bf Bemerkung																										\\
 				\verb|\appendix|\> \verb|\appendix|		\> Stellt nun sicher, dass der \LaTeX-Befehl 																			\\
 								\> 						\> \verb|\appendix| nur einmal aufgerufen wird.																			\\
-				\verb|\section|	\> \verb|\chapter|		\> nur in \texttt{Mitschrift}en, da dort keine \texttt{chapter} existieren.												\\
+				\verb|\chapter|	\> \verb|\section|		\> nur in \texttt{Mitschrift}en, da dort keine \texttt{chapter} existieren.												\\
 				\verb|\epsilon|	\> $\epsilon$			\> $\epsilonOld$ = \verb|\epsilonOld|																					\\
 				\verb|\phi|		\> $\phi$				\> $\phiOld$ = \verb|\phiOld|
 			\end{tabbing}
@@ -285,7 +285,8 @@ Aenean massa. Cum sociis natoque penatibus et magnis.     \qed
 				\verb|\dhe|, \verb|\Dhe|		\> das heißt 					\> \verb|\dh| ist schon für \dh\ belegt.	\\
 				\verb|\idr|, \verb|\Idr|		\> in der Regel															\\
 				\verb|\obda|, \verb|\Obda|		\> ohne Beschränkung der Allgemeinheit 									\\
-				\verb|\su|, \verb|\Su|			\> siehe unten															\\
+				\verb|\sob|, \verb|\Sob|		\> siehe oben 					\> \verb|\so| ist im Paket \texttt{soul} für 			\\
+				\verb|\su|, \verb|\Su|			\> siehe unten					\> \so{gesperrt} reserviert.				\\
 				\verb|\ua|, \verb|\Ua|			\> unter anderem														\\
 				\verb|\va|, \verb|\Va|			\> vor allem															\\
 				\verb|\zb|, \verb|\Zb|			\> zum Beispiel															\\
@@ -297,10 +298,7 @@ Aenean massa. Cum sociis natoque penatibus et magnis.     \qed
 			\begin{verbatim}
 				\begin{quotex}[\wiki{https://de.wikipedia.org/wiki/Betriebssystem}]
 				      Ein \neuerbegriff{Betriebssystem} ist eine Zusammenstellung 
-				      von Computerprogrammen, die die Systemressourcen eines 
-				      Computers wie Arbeitsspeicher, Festplatten, Ein- und 
-				      Ausgabegeräte verwaltet und diese Anwendungsprogrammen 
-				      zur Verfügung stellt. 
+				      von Computerprogrammen\ellipse 
 				\end{quotex}
 			\end{verbatim}
 			
@@ -309,10 +307,7 @@ Aenean massa. Cum sociis natoque penatibus et magnis.     \qed
 					\bigskip
 					\begin{quotex}[\wiki{https://de.wikipedia.org/wiki/Betriebssystem}]
 						Ein \neuerbegriff{Betriebssystem} ist eine Zusammenstellung 
-						von Computerprogrammen, die die Systemressourcen eines 
-						Computers wie Arbeitsspeicher, Festplatten, Ein- und 
-						Ausgabegeräte verwaltet und diese Anwendungsprogrammen 
-						zur Verfügung stellt. 
+						von Computerprogrammen\ellipse
 					\end{quotex}
 					\bigskip
 				\end{minipage}
