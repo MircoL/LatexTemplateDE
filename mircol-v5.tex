@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%   LaTeX-Arbeitsvorlage, Version 5.5                 	  	%
+%   LaTeX-Arbeitsvorlage, Version 5.6                 	  	%
 %   Autor: 		Mirco Lukas <http://mircol.de>              %
 %   Lizenz: 	The MIT License (MIT)						%
 %   Updates: 	https://github.com/MircoL/LatexTemplateDE   %
@@ -476,7 +476,7 @@
 	all/Index/Begriffe/zeigen/.initial 		= {false},
 	all/Index/Literatur/titel/.initial 		= {Literaturverzeichnis},
 	all/Index/Literatur/zeigen/.initial 	= {false},
-	Skript/AnmkerkungenTitelseite/.initial 	= {},
+	Skript/AnmerkungenTitelseite/.initial 	= {},
 	Mitschriften/Vorlesungsname/.initial 	= {},
 	Mitschriften/Typ/.initial 				= {},
 	Mitschriften/LfdNr/.initial 			= {},
@@ -522,7 +522,7 @@
 				\ifthenelse{\equal{\get{all/Untertitel}}{}}{}{\vspace*{.5em}{\large\bf\get{all/Untertitel}\par}}
 			\end{center}
 			\begin{flushright}
-				\ifthenelse{\equal{\get{Skript/AnmkerkungenTitelseite}}{}}{}{{\em \vspace*{1em}\get{Skript/AnmkerkungenTitelseite}\par}}
+				\ifthenelse{\equal{\get{Skript/AnmerkungenTitelseite}}{}}{}{{\em \vspace*{1em}\get{Skript/AnmerkungenTitelseite}\par}}
 				\ifthenelse{\equal{\get{all/Version}}{true}}{Version: \version, }{}\today\par\vspace*{1em}
 				\StrSubstitute{\get{all/Autoren}}{&}{\par}
 			\end{flushright}
