@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%   LaTeX-Arbeitsvorlage, Version 5.6                 	  	%
+%   LaTeX-Arbeitsvorlage, Version 5.7                 	  	%
 %   Autor: 		Mirco Lukas <http://mircol.de>              %
 %   Lizenz: 	The MIT License (MIT)						%
 %   Updates: 	https://github.com/MircoL/LatexTemplateDE   %
@@ -177,8 +177,6 @@
 \newcommand{\andd}{\wedge}
 	\newcommand{\bigandd}{\bigwedge}
 
-%\newarray{Autoren}
-
 \newcommand{\aufgabe}[1]{%
 	\renewcommand{\aktuelleAufgabe}{#1}%
 	\section*{Aufgabe \aktuelleAufgabe}%
@@ -236,10 +234,10 @@
 	\makeatother
 }
 
-\newcommand{\sob}{s.\,o.\xspace}
-\newcommand{\Sob}{S.\,o.\xspace}
-\newcommand{\su}{s.\,u.\xspace}
-\newcommand{\Su}{S.\,u.\xspace}
+\newcommand{\sio}{s.\,o.\xspace}
+\newcommand{\Sio}{S.\,o.\xspace}
+\newcommand{\siu}{s.\,u.\xspace}
+\newcommand{\Siu}{S.\,u.\xspace}
 
 \newcommand{\orr}{\vee}
 	\newcommand{\bigorr}{\bigvee}
@@ -377,11 +375,11 @@
 	colframe=blue!75!black,fonttitle=\bfseries,title={#2},phantomlabel={#1},breakable%
 }
 
-\newtcolorbox[auto counter,number format=\arabic,list inside=yellowboxes]{yellowboxIdx}[2][]{%
+\newtcolorbox[use counter from=blueboxIdx,number format=\arabic,list inside=yellowboxes]{yellowboxIdx}[2][box\boxnummer]{%
 	colframe=yellow!99,fonttitle=\bfseries,title={\textcolor{black}{#2}},phantomlabel={#1},breakable%
 }
 
-\newtcolorbox[auto counter,number format=\arabic,list inside=greenboxes]{greenboxIdx}[2][]{%
+\newtcolorbox[use counter from=blueboxIdx,number format=\arabic,list inside=greenboxes]{greenboxIdx}[2][box\boxnummer]{%
 	colframe=green,fonttitle=\bfseries,title={\textcolor{black}{#2}},phantomlabel={#1},breakable%
 }
 
@@ -497,7 +495,6 @@
 % =====================================================
 
 \AtBeginDocument{
-	
 	% Zulässige Werte testen
 	\begingroup
 		\newcommand{\checkbool}[1]{\ifthenelse{\equal{#1}{true} \OR \equal{#1}{false}}{}{\errmessage{Boolean '#1' muss 'true' oder 'false' sein!}\stop}}
