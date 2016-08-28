@@ -7,7 +7,7 @@
 \pgfqkeys{/VorlageVersion5}{
 	all/Autoren						= {Mirco Lukas},
 	all/Titel	 					= {Dokumentation zur \LaTeX-Vorlage},
-	all/Untertitel 					= {Eine \LaTeX-Vorlage mit vielen vordefinierten Befehlen\par Version~5.7},
+	all/Untertitel 					= {Eine \LaTeX-Vorlage mit vielen vordefinierten Befehlen\par Version~5.8},
 	all/VersionPraefix 				= {},
 	all/Version 					= {false},
 	all/Icon/Breite					= {1},
@@ -102,6 +102,14 @@
 				\verb|\andereSprachen|	\> eine Liste weiterer Sprachen, die im Dokument vorkommen \\
 										\> (durch Kommata getrennt)
 			\end{tabbing}
+			Die folgenden Einstellungen beeinflussen den Zeilenabstand im Dokument:
+			\begin{tabbing}
+				mmmmmmmmmmm 			\= mmmmmmmmmmmmmmmmmmm \= \kill
+				\bf Befehl				\> \bf Erklärung 				\> Wertebereich \\
+				\verb|\zeilenabstand|	\> Der gewünschte Zeilenabstand \> \texttt{singlespacing}, \texttt{onehalfspacing} \\
+										\>								\> oder \texttt{doublespacing}
+			\end{tabbing}
+			
 		\subsection{Arrays}
 			Es werden folgende Arrays definiert. Die einzelnen Felder werden \emph{ohne Leerzeichen} mit "`\&"' voneinander getrennt: \verb|all/Autoren = {Alice&Bob}|.
 			\begin{tabbing}
