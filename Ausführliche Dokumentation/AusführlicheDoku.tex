@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%   LaTeX-Arbeitsvorlage, Version 5.7                 	  	%
+%   LaTeX-Arbeitsvorlage, Version 5.12                 	  	%
 %   Autor: 		Mirco Lukas <http://mircol.de>              %
 %   Lizenz: 	The MIT License (MIT)						%
 %   Updates: 	https://github.com/MircoL/LatexTemplateDE   %
@@ -40,23 +40,7 @@
 	all/Index/Literatur/zeigen 		= {false},
 %	
 	% Zusätzlich für Skripte
-	Skript/AnmerkungenTitelseite 	= {},
-%
-	% Zusätzlich für Mitschriften
-	Mitschriften/Vorlesungsname 	= {},
-	Mitschriften/Typ 				= {\"Ubung},
-	Mitschriften/LfdNr 				= {},
-	Mitschriften/Gruppe 			= {},
-	Mitschriften/Headerhoehe		= {42pt},
-%	
-	% Zusätzlich für Bücher
-	Buecher/Widmung					= {},
-	Buecher/Modus					= {rl},
-%	
-	% Zusätzlich für Präsentationen
-	Praesentationen/TitelKurz		= {},
-	Praesentationen/Institut		= {},
-	Praesentationen/InstitutKurz	= {}
+	Skript/AnmerkungenTitelseite 	= {}
 }
 
 
@@ -94,6 +78,14 @@
 			Hat man das Archiv entpackt, erhält man einen Ordner mit folgender Dateistruktur: 
 			
 			\begin{verbatim}
+			Ausführliche Dokumentation
+			--Grafiken
+			--AusführlicheDoku.pdf
+			--AusführlicheDoku.tex
+			--index.ist
+			--quellen.bib
+			--titel.jpg
+			--version.dat
 			doc
 			--docu_v5.pdf
 			--docu_v5.tex
@@ -106,6 +98,8 @@
 			--muster-praesentation.tex
 			--muster-skript.pdf
 			--muster-skript.tex
+			--muster-thesis.pdf
+			--muster-thesis.tex
 			--titel.jpg
 			--version.dat
 			Vorlage
@@ -118,13 +112,13 @@
 			mircol-v5.tex
 			\end{verbatim}
 			
-			Im Unterordner „doc“ findet man diverse Beispieldokumente als PDF- und TEX-Datei. Zudem befindet sich hier die Dokumentation „docu\_v5.pdf“. Die Muster-Dokumente eignen sich gut, um damit ein neues Werk zu beginnen oder zu lernen, wie ein bestimmtes Ergebnis erzielt werden kann. Dazu schaut man in die entsprechende TEX-Datei. 
+			Im Unterordner „doc“ findet man diverse Beispieldokumente als PDF- und TEX-Datei. Zudem befindet sich hier die Dokumentation \texttt{docu\_v5.pdf}. Die Muster-Dokumente eignen sich gut, um damit ein neues Werk zu beginnen oder zu lernen, wie ein bestimmtes Ergebnis erzielt werden kann. Dazu schaut man in die entsprechende TEX-Datei. 
 			
-			Der zweite Unterordner enthält eine blanke Vorlage, nämlich „Vorlage.tex“. In die Datei „quellen.bib“ fügt man die verwendeten Quellen in BibTeX-Formatierung ein. 
+			Der nächste Unterordner enthält eine blanke Vorlage, nämlich \texttt{Vorlage.tex}. In die Datei „quellen.bib“ fügt man die verwendeten Quellen in BibTeX-Formatierung ein. 
 			
-			Das eigentliche Kernstück der Vorlage ist die Datei „mircol-v5.tex“, die die Einstellungen enthält. Im Grunde wäre also diese Datei mit dem Ordner „Vorlage“ zusammen die Minimalausstattung, um zu starten. Ein möglicher Projektordner „Meine\_Abschlussarbeit“ für ein neues Schriftstück könnte dann so aussehen: 
+			Das eigentliche Kernstück der Vorlage ist die Datei \texttt{mircol-v5.tex}, die die Einstellungen enthält. Im Grunde wäre also diese Datei mit dem Ordner „Vorlage“ zusammen die Minimalausstattung, um zu starten. Ein möglicher Projektordner „Meine\_Abschlussarbeit“ für ein neues Schriftstück könnte dann so aussehen: 
 			
-			\newpage
+		
 			
 			\begin{verbatim}
 			Meine_Abschlussarbeit
@@ -136,7 +130,7 @@
 			--mircol-v5.tex
 			\end{verbatim}
 			
-			Man kann den Ordner „Vorlage“ und die Datei „Vorlage.tex“ auch umbenennen, \zb in „Thesis“ und „Thesis.tex“. 
+			Man kann den Ordner \texttt{Vorlage} und die Datei \texttt{Vorlage.tex} auch umbenennen, \zb in \texttt{Thesis} und \texttt{Thesis.tex}. 
 
 	\chapter{Funktionen}
 		
@@ -200,19 +194,21 @@
 		
 		\section{Auswahl der Dokumentklasse}
 		
-			Man kann zwischen vier verschiedenen Dokumenttypen wählen. Je nachdem, was für ein Schriftstück erstellt werden soll, entscheidet man sich zwischen \emph{Buch}, \emph{Mitschrift}, \emph{Skript} und \emph{Praesentation}. Im Kopfbereich des Dokuments befindet sich folgender Abschnitt: 
+			Man kann zwischen fünf verschiedenen Dokumenttypen wählen. Je nachdem, was für ein Schriftstück erstellt werden soll, entscheidet man sich zwischen \emph{Buch}, \emph{Mitschrift}, \emph{Skript}, \emph{Thesis} und \emph{Praesentation}. Im Kopfbereich des Dokuments befindet sich folgender Abschnitt: 
 			
 			\begin{verbatim}
 			\def\dokumentTyp{Skript}		% oder
+			%\def\dokumentTyp{Thesis}	% oder
 			%\def\dokumentTyp{Mitschrift}	% oder
 			%\def\dokumentTyp{Buch}		% oder
 			%\def\dokumentTyp{Praesentation}
 			\end{verbatim}
 			
 			Zur Wahl eines Dokumenttyps entfernt man das Prozentzeichen vor der entsprechenden Zeile und setzt die Zeichen vor alle anderen Zeilen. Um ein Buch zu verfassen, müsste man den Code also wie folgt verändern: 
-			
+			\newpage
 			\begin{verbatim}
 			%\def\dokumentTyp{Skript}		% oder
+			%\def\dokumentTyp{Thesis}	% oder
 			%\def\dokumentTyp{Mitschrift}	% oder
 			\def\dokumentTyp{Buch}		% oder
 			%\def\dokumentTyp{Praesentation}
