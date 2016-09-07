@@ -7,7 +7,7 @@
 \pgfqkeys{/VorlageVersion5}{
 	all/Autoren						= {Mirco Lukas},
 	all/Titel	 					= {Dokumentation zur \LaTeX-Vorlage},
-	all/Untertitel 					= {Eine \LaTeX-Vorlage mit vielen vordefinierten Befehlen\par Version~5.8},
+	all/Untertitel 					= {Eine \LaTeX-Vorlage mit vielen vordefinierten Befehlen\par Version~5.10},
 	all/VersionPraefix 				= {},
 	all/Version 					= {false},
 	all/Icon/Breite					= {1},
@@ -56,6 +56,7 @@
 				\tt Mitschrift				\> \tt article \\
 				\tt Buch					\> \tt scrbook \\
 				\tt Praesentation			\> \tt beamer \\
+				\tt Thesis					\> \tt srcbook \\
 				\emph{(ein anderer)}		\> \em (Fehlermeldung: Ungueltiger Dokumenttyp.)
 			\end{tabbing}
 		Die einzelnen Dokumente, die erzeugt werden, sehen wie folgt aus:
@@ -88,7 +89,16 @@
 		\end{center}
 		\incpdf{muster-praesentation.pdf}
 		\newpage
-
+	
+		
+		\begin{center}
+			\vspace*{20em}
+			\subsection{Beispiel zu \tt Thesis}
+		\end{center}
+		\incpdf{muster-thesis.pdf}
+		\label{thesis-bsp}
+		\newpage
+	
 
 	
 	\section{Dokumenteinstellungen}
@@ -113,9 +123,11 @@
 		\subsection{Arrays}
 			Es werden folgende Arrays definiert. Die einzelnen Felder werden \emph{ohne Leerzeichen} mit "`\&"' voneinander getrennt: \verb|all/Autoren = {Alice&Bob}|.
 			\begin{tabbing}
-				mmmmmmmmmmmm 		\= mmmmmmmmmmmmmmmm				\=	mmmmmmmmmm	\kill
-				\bf Name des Arrays	\> \bf Inhalt 					\> \bf Dokumentklassen\\
-				 all/Autoren		\> Die Autoren der Dokumente	\> alle
+				mmmmmmmmmmmmmmm			\= mmmmmmmmmmmmmmmmm					\=	mmmmmmmmmm			\kill
+				\bf Name des Arrays		\> \bf Inhalt 							\> \bf Dokumentklassen	\\
+				 all/Autoren			\> Die Autoren der Dokumente			\> alle					\\
+				 Thesis/EingereichtBei	\> Prof., bei dem eingereicht wird		\> \tt Thesis 			\\
+				 Thesis/BetreuungDurch	\> Die Betreuer der Thesis				\> \tt Thesis
 			\end{tabbing}
 		\subsection{Pgfkeys}
 			Im Folgenden werden die existierenden Schlüssel-Werte-Paare gelistet. Die Dokumentklassen sind aus dem Schlüssel direkt ersichtlich. Dabei bedeuten:
@@ -155,8 +167,10 @@
 				all/Index/Begriffe/titel 		\> Titel des Index' der Begriffe		\> string			\\
 				all/Index/Literatur/zeigen		\> Zeige das Literaturverzeichnis		\> boolean			\\
 				all/Index/Literatur/titel		\> Titel des Literaturverzeichnisses	\> string			\\
+				\\
 				Skript/AnmerkungenTitelseite 	\> Eine Anmerkung, die auf der Titelseite\> string			\\ 
 												\> erscheint												\\
+				\\
 				Mitschriften/Vorlesungsname 	\> Name der Vorlesung 					\> string			\\
 				Mitschriften/Typ 				\> \zb \emph{Übung, Vorlesung, Praktikum}	
 																						\> string			\\
@@ -164,19 +178,40 @@
 				Mitschriften/Gruppe 			\> \zb die Übungsgruppe					\> string			\\
 				Mitschriften/Headerhoehe		\> Höhe des Headers (falls Text hineinragt)
 																						\> length			\\
+				\\
 				Buecher/Widmung					\> Eine Widmung							\> string			\\
 				Buecher/Modus					\> Aufteilung in rechte und linke Seite (\texttt{rl})
 																						\> \{\texttt{rl}, \texttt{e}\} \\
 												\> oder jede Seite einzeln und zentriert (\texttt{e})					\\
+				\\
 				Praesentationen/TitelKurz		\> Ein Kurztitel (für die Fußzeile)		\> string			\\
-				Praesentationen/Institut		\> Das Institut (für die Titelseite)	\> string			\\
-				Praesentationen/InstitutKurz	\> Abkürzung des Instituts 				\> string 			\\
-												\> (für die Fußzeile)
+				Praesentationen/Institut/lang	\> Das Institut (für die Titelseite)	\> string			\\
+				Praesentationen/Institut/kurz	\> Abkürzung des Instituts 				\> string 			\\
+												\> (für die Fußzeile)										\\
+				\\
+				\\
+												\>										\> ...
+			\end{tabbing}
+			\newpage	
+			\begin{tabbing}
+				mmmmmmmmmmmmmmmmmm				\= mmmmmmmmmmmmmmmmmmmmmm 				\=\kill
+					Thesis/AkademischerGrad/kurz	\> \zb \texttt{Bachelor}				\> string			\\
+				Thesis/AkademischerGrad/lang	\> \zb \texttt{Bachelor of Science}		\> string			\\
+				Thesis/Fach/Nominativ			\> Das Fach im Nominativ				\> string			\\
+				Thesis/Fach/Genitiv				\> Das Fach im Genitiv (einschl. Artikel) \> string			\\
+				Thesis/UniName/lang				\> Der Name der Uni (Langform)			\> string			\\
+				Thesis/UniName/kurz				\> Der Name der Uni (Kurzform)			\> string			\\
+				Thesis/Abgabedatum				\> Das Abgabedatum der Thesis			\> string			\\
+				Thesis/Versicherung/zeigen		\> Zeige die Versicherung der Eigenleistung.
+																						\> boolean			\\
+				Thesis/Versicherung/text		\> Text der Versicherung (\siu).		\> string			\\
+				Thesis/Versicherung/ort			\> \idr der Sitz der Uni 				\> string	
 			\end{tabbing}
 			\textbf{Besonderheiten:}
 			\begin{itemize}
 				\item Als Titelbild wird die Datei \texttt{titel.jpg} verwendet. Ist diese Datei im Arbeitsverzeichnis nicht vorhanden, bleiben die dazugehörigen Befehle ohne Wirkung.
 				\item Als Literaturliste wird die Datei \texttt{quellen.bib} verwendet. Ist diese Datei im Arbeitsverzeichnis nicht vorhanden, so wird keine Literaturliste erzeugt.
+				\item Wird die Anzeige der Versicherung eingeschaltet, aber kein Text angegeben, so erscheint ein Standardtext (Siehe Muster im Kap. \vref{thesis-bsp})
 			\end{itemize}
 
 

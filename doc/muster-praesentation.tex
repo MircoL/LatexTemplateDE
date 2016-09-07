@@ -24,8 +24,8 @@
 	all/Index/Begriffe/zeigen 		= {false},
 	all/Index/Begriffe/titel 		= {Index},
 	Praesentationen/TitelKurz		= {K},
-	Praesentationen/Institut		= {},
-	Praesentationen/InstitutKurz	= {}
+	Praesentationen/Institut/lang	= {},
+	Praesentationen/Institut/kurz	= {}
 }
 
 
@@ -39,10 +39,10 @@
 \begin{document}
 
 
-	\section{Eine section}
-	\frame{
+	\section{Abschnittsbeispiel (\texttt{allowframebreaks})}
+	\frame[allowframebreaks]{
 		\frametitle{Frame: \insertsection}
-		\lipsum[2]\footnote{Fußnote}
+		\lipsum[2-10]
 	}
 	
 \end{document}

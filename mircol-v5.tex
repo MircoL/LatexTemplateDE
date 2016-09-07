@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%   LaTeX-Arbeitsvorlage, Version 5.8                 	  	%
+%   LaTeX-Arbeitsvorlage, Version 5.10                	  	%
 %   Autor: 		Mirco Lukas <http://mircol.de>              %
 %   Lizenz: 	The MIT License (MIT)						%
 %   Updates: 	https://github.com/MircoL/LatexTemplateDE   %
@@ -16,6 +16,7 @@
 
 \IfStrEqCase{\dokumentTyp}{
 	{Skript}{\documentclass[12pt,ngerman,openany,numbers=noenddot,listof=totoc,bibliography=totoc,oneside]{scrbook}}%
+	{Thesis}{\documentclass[12pt,ngerman,openany,numbers=noenddot,listof=totoc,bibliography=totoc,oneside]{scrbook}}%
 	{Mitschrift}{\documentclass[a4paper,12pt,ngerman,oneside]{scrartcl}}%
 	{Buch}{\documentclass[paper=a5,pagesize,footheight=-3cm]{scrbook}}%
 	{Praesentation}{\documentclass{beamer}}%
@@ -116,6 +117,11 @@
 % Lade Pakete abhängig vom DokumentTyp.
 \IfStrEqCase{\dokumentTyp}{
 	{Skript}{
+		\usepackage[a4paper]{geometry}
+		\usepackage[hyphens]{url}
+		\usepackage[pdftex,pdfborderstyle={/S/U/W 1}]{hyperref}
+	}
+	{Thesis}{
 		\usepackage[a4paper]{geometry}
 		\usepackage[hyphens]{url}
 		\usepackage[pdftex,pdfborderstyle={/S/U/W 1}]{hyperref}
@@ -486,15 +492,26 @@
 	Buecher/Widmung/.initial				= {},
 	Buecher/Modus/.initial					= {rl},
 	Praesentationen/TitelKurz/.initial		= {},
-	Praesentationen/Institut/.initial		= {},
-	Praesentationen/InstitutKurz/.initial	= {}
+	Praesentationen/Institut/lang/.initial	= {},
+	Praesentationen/Institut/kurz/.initial	= {},
+	Thesis/AkademischerGrad/kurz/.initial	= {},
+	Thesis/AkademischerGrad/lang/.initial	= {},
+	Thesis/Fach/Nominativ/.initial			= {},
+	Thesis/Fach/Genitiv/.initial			= {},
+	Thesis/UniName/lang/.initial			= {},
+	Thesis/UniName/kurz/.initial			= {},
+	Thesis/EingereichtBei/.initial			= {},
+	Thesis/BetreuungDurch/.initial			= {},
+	Thesis/Abgabedatum/.initial				= {},
+	Thesis/Versicherung/zeigen/.initial		= {true},
+	Thesis/Versicherung/text/.initial		= {},
+	Thesis/Versicherung/ort/.initial		= {}
 }
 
 
 % =====================================================
 %    Generiere passende Titelseiten, Kopfzeilen etc.
 % =====================================================
-
 \AtBeginDocument{
 	% Zulässige Werte testen
 	\begingroup
@@ -505,6 +522,7 @@
 		\checkbool{\get{all/Index/Boxen/gruen/zeigen}}
 		\checkbool{\get{all/Index/Begriffe/zeigen}}
 		\checkbool{\get{all/Index/Literatur/zeigen}}
+		\checkbool{\get{Thesis/Versicherung/zeigen}}
 		% ------------------------------------------------------------------------
 		\ifx\documentTyp{Buch}
 			\ifthenelse{\equal{Buecher/Modus}{e} \OR \equal{Buecher/Modus}{rl}}{}{\errmessage{//Buecher/Modus muss 'e' oder 'rl' sein!}\stop}
@@ -512,7 +530,6 @@
 	\endgroup
 	
 	\setVersion{\get{all/VersionPraefix}}
-	
 	\IfStrEqCase{\dokumentTyp}{
 		{Skript}{%
 			\thispagestyle{empty}
@@ -532,6 +549,56 @@
 					\ifthenelse{\equal{\get{all/Icon/URL}}{}}{}{{\tiny \href{\get{all/Icon/URL}}{Quelle}}}
 				}{}
 			\end{center}
+			\newpage
+			
+			\pagenumbering{Roman}
+			\newpage
+			\tableofcontents 
+			
+			\newpage
+			
+			\newpage
+			\pagenumbering{arabic} 
+		}
+		{Thesis}{%
+			% an anderer Stelle führt dies zu einem Stacküberlauf ("Tex capacity exceeded, sorry...")!
+			\newcommand\eingereichtBei{}
+			\StrSubstitute{\get{Thesis/EingereichtBei}}{&}{,\par}[\eingereichtBei]
+			\newcommand\betreuungDurch{}
+			\StrSubstitute{\get{Thesis/BetreuungDurch}}{&}{,\par}[\betreuungDurch]
+			
+			\thispagestyle{empty}
+			\vspace*{4em}
+			\begin{center}
+				\ifthenelse{\equal{\get{Thesis/AkademischerGrad/kurz}}{}}{}{%
+					\get{Thesis/AkademischerGrad/kurz}arbeit zur Erlangung des akademischen Grades\par%
+					eines \get{Thesis/AkademischerGrad/lang} \get{Thesis/Fach/Genitiv}%
+				}
+				\\
+				\ifthenelse{\equal{\get{Thesis/UniName/lang}}{}}{}{\textbf{\get{Thesis/UniName/lang}}\par}
+				\IfFileExists{titel.jpg}{%
+					\vspace*{1em}%
+					\includegraphics[width=\get{all/Icon/Breite}\textwidth]{titel.jpg}\par%
+					\ifthenelse{\equal{\get{all/Icon/URL}}{}}{}{{\tiny \href{\get{all/Icon/URL}}{Quelle}}}
+				}{}
+				\ifthenelse{\equal{\get{all/Titel}}{}}{}{{\Huge \bf \get{all/Titel}\par}}
+				\ifthenelse{\equal{\get{all/Untertitel}}{}}{}{\vspace*{.5em}{\large\bf\get{all/Untertitel}\par}}
+				\vspace*{.5em}
+				{\bf \Large \get{Thesis/AkademischerGrad/kurz}arbeit von %
+					\StrSubstitute{\get{all/Autoren}}{&}{\par}%
+				}
+			\end{center}
+			
+			\begin{tabular}{ll}
+				Eingereicht bei: & \multicolumn{1}{p{11cm}}{\eingereichtBei} \\
+				Betreuung durch: & \multicolumn{1}{p{11cm}}{\betreuungDurch} \\
+				Abgabedatum:	 & \get{Thesis/Abgabedatum}
+			\end{tabular}
+			\begin{flushright}
+				\ifthenelse{\equal{\get{Skript/AnmerkungenTitelseite}}{}}{}{{\em \vspace*{1em}\get{Skript/AnmerkungenTitelseite}\par}}
+				\ifthenelse{\equal{\get{all/Version}}{true}}{Version: \version, }{}
+			\end{flushright}
+			
 			\newpage
 			
 			\pagenumbering{Roman}
@@ -670,6 +737,36 @@
 		
 			\ifthenelse{\equal{\get{all/Index/Boxen/gruen/zeigen}}{true}}{\tcblistof[\chapter]{greenboxes}{\get{all/Index/Boxen/gruen/titel}}}{}
 		
+			\ifthenelse{\equal{\get{all/Index/Begriffe/zeigen}}{true}}{
+				\renewcommand{\indexname}{\get{all/Index/Begriffe/titel}}
+				\addcontentsline{toc}{chapter}{\indexname}
+				\printindex
+			}{}
+		}
+		{Thesis}{%
+			\ifthenelse{\equal{\get{Thesis/Versicherung/zeigen}}{true}}{%
+				\chapter{Eigenständigkeitserklärung}%
+				\ifthenelse{\equal{\get{Thesis/Versicherung/text}}{}}%
+					{Ich erkläre hiermit, dass ich die vorliegende Arbeit selbständig verfasst, keine anderen als die angegebenen Quellen und Hilfsmittel benutzt sowie die diesen Quellen und Hilfsmitteln wörtlich oder sinngemäß entnommenen Ausführungen als solche kenntlich gemacht habe. \par
+					\noindent Die Arbeit habe ich bisher oder gleichzeitig keiner anderen Prüfungsbehörde vorgelegt.
+					\\ \\
+				}{\get{Thesis/Versicherung/text}}%					
+				\noindent \get{Thesis/Versicherung/ort}, \get{Thesis/Abgabedatum}
+				\\ \\ \\
+				
+				\noindent ......................................................
+				
+				\noindent \StrSubstitute{\get{all/Autoren}}{&}{\par}
+				
+				\newpage%
+			}{}
+			
+			\ifthenelse{\equal{\get{all/Index/Boxen/blau/zeigen}}{true}}{\tcblistof[\chapter]{blueboxes}{\get{all/Index/Boxen/blau/titel}}}{}
+			
+			\ifthenelse{\equal{\get{all/Index/Boxen/gelb/zeigen}}{true}}{\tcblistof[\chapter]{yellowboxes}{\get{all/Index/Boxen/gelb/titel}}}{}
+			
+			\ifthenelse{\equal{\get{all/Index/Boxen/gruen/zeigen}}{true}}{\tcblistof[\chapter]{greenboxes}{\get{all/Index/Boxen/gruen/titel}}}{}
+			
 			\ifthenelse{\equal{\get{all/Index/Begriffe/zeigen}}{true}}{
 				\renewcommand{\indexname}{\get{all/Index/Begriffe/titel}}
 				\addcontentsline{toc}{chapter}{\indexname}
