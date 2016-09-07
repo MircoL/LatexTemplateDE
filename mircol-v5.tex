@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%   LaTeX-Arbeitsvorlage, Version 5.10                	  	%
+%   LaTeX-Arbeitsvorlage, Version 5.11                	  	%
 %   Autor: 		Mirco Lukas <http://mircol.de>              %
 %   Lizenz: 	The MIT License (MIT)						%
 %   Updates: 	https://github.com/MircoL/LatexTemplateDE   %
@@ -571,8 +571,8 @@
 			\vspace*{4em}
 			\begin{center}
 				\ifthenelse{\equal{\get{Thesis/AkademischerGrad/kurz}}{}}{}{%
-					\get{Thesis/AkademischerGrad/kurz}arbeit zur Erlangung des akademischen Grades\par%
-					eines \get{Thesis/AkademischerGrad/lang} \get{Thesis/Fach/Genitiv}%
+					%\get{Thesis/AkademischerGrad/kurz}arbeit zur Erlangung des akademischen Grades\par	eines \get{Thesis/AkademischerGrad/lang} \get{Thesis/Fach/Genitiv}%
+					Abschlussarbeit im Fach \get{Thesis/Fach/Nominativ}%
 				}
 				\\
 				\ifthenelse{\equal{\get{Thesis/UniName/lang}}{}}{}{\textbf{\get{Thesis/UniName/lang}}\par}
@@ -589,10 +589,10 @@
 				}
 			\end{center}
 			
-			\begin{tabular}{ll}
-				Eingereicht bei: & \multicolumn{1}{p{11cm}}{\eingereichtBei} \\
-				Betreuung durch: & \multicolumn{1}{p{11cm}}{\betreuungDurch} \\
-				Abgabedatum:	 & \get{Thesis/Abgabedatum}
+			\begin{tabular}{ll}%
+				\ifthenelse{\equal{\eingereichtBei}{}}{}{\noindent Eingereicht bei: & \multicolumn{1}{p{11cm}}{\eingereichtBei} \\}%
+				\ifthenelse{\equal{\betreuungDurch}{}}{}{\noindent Betreuung durch: & \multicolumn{1}{p{11cm}}{\betreuungDurch} \\}%
+				\noindent Abgabedatum:	 & \get{Thesis/Abgabedatum}%
 			\end{tabular}
 			\begin{flushright}
 				\ifthenelse{\equal{\get{Skript/AnmerkungenTitelseite}}{}}{}{{\em \vspace*{1em}\get{Skript/AnmerkungenTitelseite}\par}}
