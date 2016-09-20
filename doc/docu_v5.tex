@@ -7,7 +7,7 @@
 \pgfqkeys{/VorlageVersion5}{
 	all/Autoren						= {Mirco Lukas},
 	all/Titel	 					= {Dokumentation zur \LaTeX-Vorlage},
-	all/Untertitel 					= {Eine \LaTeX-Vorlage mit vielen vordefinierten Befehlen\par Version~5.12},
+	all/Untertitel 					= {Eine \LaTeX-Vorlage mit vielen vordefinierten Befehlen\par Version~5.14},
 	all/VersionPraefix 				= {},
 	all/Version 					= {false},
 	all/Icon/Breite					= {1},
@@ -61,7 +61,7 @@
 			\end{tabbing}
 		Die einzelnen Dokumente, die erzeugt werden, sehen wie folgt aus:
 		
-		
+		\newpage
 		\begin{center}
 			\vspace*{20em}
 			\subsection{Beispiel zu \tt Skript}
@@ -632,7 +632,117 @@ Aenean massa. Cum sociis natoque penatibus et magnis.     \qed
 				\end{minipage}
 			}
 			
-		\newpage
+			
+			
+			
+			
+			
+		\section{Die Umgebung \texttt{documentationx}}	
+			Diese Umgebung dient zur Dokumentation von Quellcode. 
+			Die folgenden Befehle erhalten jeweils
+			\begin{itemize}
+				\item als ersten Parameter einen eindeutigen\footnote{Es genügt, wenn der Name innerhalb einer Verschachtelung eindeutig ist.} Namen
+				\item als zweiten Parameter einen solchen in der Form \verb|key={value}| -- genauso wie die Definitionen am Anfang der Vorlage.
+			\end{itemize}
+			Es stehen zur Verfügung:
+			
+			\begin{itemize}
+				\item \verb|\Pkgdef| mit den Parametern \texttt{name} und \texttt{description};
+				\item \verb|\Classdef|, \verb|\Methoddef| und \verb|\Vardef| zusätzlich mit den Parametern \texttt{modifier} und \texttt{type}.
+			\end{itemize}
+			Darüber hinaus gibt es den Befehl \verb|\Parameter|. Der erste (optionale) Parameter entspricht dem Variablentyp, der zweite den Variablennamen.
+			Die Farbgebung orientiert sich am Syntax-Highlighting von Eclipse.
+			\newpage
+			\enlargethispage*{1em}
+			\begin{verbatim}
+\begin{documentationx}
+   \Pkgdef{org.example.java.test}{
+     name={org.example.java.test},
+     description={
+       Dieses Paket ist nur ein Test. Es enhält folgende Klassen: \\
+       \Classdef{org.example.java.test.PossibleTestCases}{
+         modifier={public},
+         type={enum},
+         name={PossibleTestCases},
+         description={
+            Eine Reihe von Testfällen.
+         }
+       }
+       \Classdef{org.example.java.test.Functions}{
+         modifier={public},
+         type={class},
+         name={Functions},
+         description={
+            Eine Klasse mit vielen tollen Funktionen, \zb:\\
+            \Methoddef{org.example.java.test.Functions::getValue0}{
+              modifier={public},
+              type={int},
+              name={setValue(\Parameter[int]{value})},
+              description={
+                Setzt einen wichtigen Wert.
+              }
+            }
+            Außerdem gibt es noch diese Variable:\\
+            \Vardef{org.example.java.test.Functions::value}{
+              modifier={private},
+              type={int},
+              name={value},
+              description={
+                Ein Wert.
+              } 
+            }
+         }
+       }
+     }
+   }
+\end{documentationx}
+			\end{verbatim}
+			
+	\noindent\makebox[\linewidth]{\rule{.7\paperwidth}{0.4pt}}
+				\begin{documentationx}
+					\Pkgdef{org.example.java.test}{
+						name={org.example.java.test},
+						description={
+							Dieses Paket ist nur ein Test. Es enhält folgende Klassen: \\
+							\Classdef{org.example.java.test.PossibleTestCases}{
+								modifier={public},
+								type={enum},
+								name={PossibleTestCases},
+								description={
+									Eine Reihe von Testfällen.
+								}
+							}
+							\Classdef{org.example.java.test.Functions}{
+								modifier={public},
+								type={class},
+								name={Functions},
+								description={
+									Eine Klasse mit vielen tollen Funktionen, \zb:\\
+									\Methoddef{org.example.java.test.Functions::getValue0}{
+										modifier={public},
+										type={int},
+										name={setValue(\Parameter[int]{value})},
+										description={
+											Setzt einen wichtigen Wert.
+										}
+									}
+									Außerdem gibt es noch diese Variable:\\
+									\Vardef{org.example.java.test.Functions::value}{
+										modifier={private},
+										type={int},
+										name={value},
+										description={
+											Ein Wert.
+										} 
+									}
+								}
+							}
+						}
+					}
+				\end{documentationx}
+				
+		\noindent\makebox[\linewidth]{\rule{.7\paperwidth}{0.4pt}}
+		
 		\section{Abstände}
 			\label{abstaende beweis beispiel}
 			Wenn die \texttt{beweis}- und den \texttt{beispiel(e)}-Umgebungen mit Aufzählungen beginnen bzw. enden, wird sowohl oben als auch unten ein zu großer Abstand eingefügt:
@@ -645,7 +755,6 @@ Aenean massa. Cum sociis natoque penatibus et magnis.     \qed
 				     \end{itemize}
 				\end{beweis}
 			\end{verbatim}
-			
 			\fbox{
 				\begin{minipage}[t]{.9\textwidth}
 					\bigskip
@@ -659,7 +768,9 @@ Aenean massa. Cum sociis natoque penatibus et magnis.     \qed
 				\end{minipage}
 			}
 			
-			\vspace*{.5em}
+			
+			\newpage
+			
 			Der zweite -- ebenfalls optionale -- Parameter beeinflusst die Abstände oben und unten:
 			\begin{itemize}
 				\item \texttt o sorgt dafür, dass \texttt{itemize}- und ähnliche Umgebungen den richtigen Abstand nach oben haben;
@@ -667,7 +778,6 @@ Aenean massa. Cum sociis natoque penatibus et magnis.     \qed
 				\item \texttt b schaltet beides ein.
 			\end{itemize}
 			
-			\newpage
 			
 			\begin{verbatim}
 				\begin{beweis}[für P $\not=$ NP][b]

@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%   LaTeX-Arbeitsvorlage, Version 5.12                	  	%
+%   LaTeX-Arbeitsvorlage, Version 5.14                	  	%
 %   Autor: 		Mirco Lukas <http://mircol.de>              %
 %   Lizenz: 	The MIT License (MIT)						%
 %   Updates: 	https://github.com/MircoL/LatexTemplateDE   %
@@ -26,8 +26,9 @@
 % =====================================================
 %    Kompatibilitätseinstellungen für ältere Versionen
 % =====================================================
-\providecommand{\hauptsprache}{ngerman}
-\providecommand{\andereSprachen}{english,polish,russian}
+% V5.9+
+	\providecommand{\hauptsprache}{ngerman}
+	\providecommand{\andereSprachen}{english,polish,russian}
 
 % =====================================================
 %    Pakete
@@ -82,8 +83,8 @@
 \usepackage{multicol}
 
 % Workaround for Linux with texlive
-\IfFileExists{oesch.sty} %
-	{\usepackage{oesch}} %
+\IfFileExists{oesch.sty}%
+	{\usepackage{oesch}}%
 	{%
 		\errmessage{Warnung: 'oesch.sty' nicht gefunden. oeschfamily wird ein Synonym fuer 'em' sein.} %
 	}
@@ -102,8 +103,6 @@
 
 % Fußnoten durchgehend nummerieren
 \usepackage{remreset}
-
-
 
 \usepackage[\hauptsprache]{varioref}
 
@@ -438,6 +437,141 @@
 
 
 % =====================================================
+%    Programmierdokumentation
+% =====================================================
+\definecolor{eclipsemodifier}{RGB}{143,0,83}
+\definecolor{eclipsevar}{RGB}{0,37,189}
+\newcommand{\documentationxMargin}{15pt}
+\newenvironment{documentationx}{
+	\fboxsep1mm
+	\newcommand{\Parameter}[2][]{%
+		\ifthenelse%
+			{\equal{##1}{}}%
+			{}%
+			{%
+				\IfStrEqCase{##1}{%
+					{boolean}{\textcolor{eclipsemodifier}{##1}}%
+					{bool}{\textcolor{eclipsemodifier}{##1}}%
+					{byte}{\textcolor{eclipsemodifier}{##1}}%
+					{char}{\textcolor{eclipsemodifier}{##1}}%
+					{double}{\textcolor{eclipsemodifier}{##1}}%
+					{short}{\textcolor{eclipsemodifier}{##1}}%
+					{int}{\textcolor{eclipsemodifier}{##1}}%
+					{float}{\textcolor{eclipsemodifier}{##1}}%
+				}[##1]%
+				\ %
+			}%
+		\textcolor{eclipsevar}{##2}%
+	}
+	
+	\newcommand{\Pkgdef}[2]{%
+		\pgfqkeys{/documentationx/pkg/##1}{
+			name/.initial = {},
+			description/.initial = {},
+		}%
+		\pgfqkeys{/documentationx/pkg/##1}{##2}%
+		\noindent%
+		\fbox{\textcolor{eclipsemodifier}{\texttt{package}} \texttt{\pgfkeysvalueof{/documentationx/pkg/##1/name}}}: 
+		\begin{addmargin}[\documentationxMargin]{0pt}
+			\pgfkeysvalueof{/documentationx/pkg/##1/description}
+		\end{addmargin}
+	}	
+	\newcommand{\Classdef}[2]{%
+		\pgfqkeys{/documentationx/class/##1}{
+			name/.initial = {},
+			description/.initial = {},
+			modifier/.initial = {},
+			type/.initial = {}
+		}%
+		\pgfqkeys{/documentationx/class/##1}{##2}%
+		\noindent%
+		\begingroup
+			\tt
+			\ifthenelse%
+				{\equal{}{\pgfkeysvalueof{/documentationx/class/##1/modifier}}{}}%
+				{}%
+				{\textcolor{eclipsemodifier}{\pgfkeysvalueof{/documentationx/class/##1/modifier}}\ }%
+			\ifthenelse%
+				{\equal{}{\pgfkeysvalueof{/documentationx/class/##1/type}}{}}%
+				{}%
+				{\textcolor{eclipsemodifier}{\pgfkeysvalueof{/documentationx/class/##1/type}}\ }%
+			\pgfkeysvalueof{/documentationx/class/##1/name}%
+	%	\ifthenelse%
+	%		{\equal{\pgfkeysvalueof{/documentationx/class/##1/description}}{}}%
+	%		{}%
+	%		{%
+				\normalfont :
+				\begin{addmargin}[\documentationxMargin]{0pt}
+					\pgfkeysvalueof{/documentationx/class/##1/description}
+				\end{addmargin}
+	%		}%
+		\endgroup%
+	}
+	\newcommand{\Vardef}[2]{%
+		\pgfqkeys{/documentationx/var/##1}{
+			name/.initial = {},
+			description/.initial = {},
+			modifier/.initial = {},
+			type/.initial = {}
+		}%
+		\pgfqkeys{/documentationx/var/##1}{##2}%
+		\noindent%
+		\begingroup
+			\tt%
+			\ifthenelse%
+				{\equal{}{\pgfkeysvalueof{/documentationx/var/##1/modifier}}{}}%
+				{}%
+				{\textcolor{eclipsemodifier}{\pgfkeysvalueof{/documentationx/var/##1/modifier}}\ }%
+			\ifthenelse%
+				{\equal{}{\pgfkeysvalueof{/documentationx/var/##1/type}}{}}%
+				{}%
+				{\textcolor{eclipsemodifier}{\pgfkeysvalueof{/documentationx/var/##1/type}}\ }%
+			\textcolor{eclipsevar}{\pgfkeysvalueof{/documentationx/var/##1/name}}%
+			\ifthenelse%
+				{\equal{\pgfkeysvalueof{/documentationx/var/##1/description}}{}}%
+				{}%
+				{%
+					\normalfont :
+					\begin{addmargin}[\documentationxMargin]{0pt}
+						\pgfkeysvalueof{/documentationx/var/##1/description}
+					\end{addmargin}
+				}%
+		\endgroup%
+	}
+	\newcommand{\Methoddef}[2]{%
+		\pgfqkeys{/documentationx/method/##1}{
+			name/.initial = {},
+			description/.initial = {},
+			modifier/.initial = {},
+			type/.initial = {} % return type
+		}
+		\pgfqkeys{/documentationx/method/##1}{##2}%
+		\noindent%
+		\begingroup
+			\tt
+			\ifthenelse%
+				{\equal{}{\pgfkeysvalueof{/documentationx/method/##1/modifier}}{}}%
+				{}%
+				{\textcolor{eclipsemodifier}{\pgfkeysvalueof{/documentationx/method/##1/modifier}}\ }%
+			\ifthenelse%
+				{\equal{}{\pgfkeysvalueof{/documentationx/method/##1/type}}{}}%
+				{}%
+				{\textcolor{eclipsemodifier}{\pgfkeysvalueof{/documentationx/method/##1/type}}\ }%
+			\pgfkeysvalueof{/documentationx/method/##1/name}%
+			\ifthenelse%
+				{\equal{\pgfkeysvalueof{/documentationx/method/##1/description}}{}}%
+				{}%
+				{%
+					\normalfont :
+					\begin{addmargin}[\documentationxMargin]{0pt}
+						\pgfkeysvalueof{/documentationx/method/##1/description}
+					\end{addmargin}
+				}%
+		\endgroup%
+	}
+}
+
+% =====================================================
 %    Initiale Konfiguration
 % =====================================================
 
@@ -515,14 +649,14 @@
 \AtBeginDocument{
 	% Zulässige Werte testen
 	\begingroup
-		\newcommand{\checkbool}[1]{\ifthenelse{\equal{#1}{true} \OR \equal{#1}{false}}{}{\errmessage{Boolean '#1' muss 'true' oder 'false' sein!}\stop}}
-		\checkbool{\get{all/Version}}
-		\checkbool{\get{all/Index/Boxen/blau/zeigen}}
-		\checkbool{\get{all/Index/Boxen/gelb/zeigen}}
-		\checkbool{\get{all/Index/Boxen/gruen/zeigen}}
-		\checkbool{\get{all/Index/Begriffe/zeigen}}
-		\checkbool{\get{all/Index/Literatur/zeigen}}
-		\checkbool{\get{Thesis/Versicherung/zeigen}}
+		\newcommand{\checkbool}[1]{\ifthenelse{\equal{\get{#1}}{true} \OR \equal{\get{#1}}{false}}{}{\errmessage{Boolean '#1' muss 'true' oder 'false' sein!}\stop}}
+		\checkbool{all/Version}
+		\checkbool{all/Index/Boxen/blau/zeigen}
+		\checkbool{all/Index/Boxen/gelb/zeigen}
+		\checkbool{all/Index/Boxen/gruen/zeigen}
+		\checkbool{all/Index/Begriffe/zeigen}
+		\checkbool{all/Index/Literatur/zeigen}
+		\checkbool{Thesis/Versicherung/zeigen}
 		% ------------------------------------------------------------------------
 		\ifx\documentTyp{Buch}
 			\ifthenelse{\equal{Buecher/Modus}{e} \OR \equal{Buecher/Modus}{rl}}{}{\errmessage{//Buecher/Modus muss 'e' oder 'rl' sein!}\stop}
@@ -570,11 +704,11 @@
 			\thispagestyle{empty}
 			\vspace*{4em}
 			\begin{center}
-				\ifthenelse{\equal{\get{Thesis/AkademischerGrad/kurz}}{}}{}{%
+				%\ifthenelse{\equal{\get{Thesis/AkademischerGrad/kurz}}{}}{}{%
 					%\get{Thesis/AkademischerGrad/kurz}arbeit zur Erlangung des akademischen Grades\par	eines \get{Thesis/AkademischerGrad/lang} \get{Thesis/Fach/Genitiv}%
-					Abschlussarbeit im Fach \get{Thesis/Fach/Nominativ}%
-				}
-				\\
+					%Abschlussarbeit im Fach \get{Thesis/Fach/Nominativ}%
+				%}
+				%\\
 				\ifthenelse{\equal{\get{Thesis/UniName/lang}}{}}{}{\textbf{\get{Thesis/UniName/lang}}\par}
 				\IfFileExists{titel.jpg}{%
 					\vspace*{1em}%
@@ -584,8 +718,7 @@
 				\ifthenelse{\equal{\get{all/Titel}}{}}{}{{\Huge \bf \get{all/Titel}\par}}
 				\ifthenelse{\equal{\get{all/Untertitel}}{}}{}{\vspace*{.5em}{\large\bf\get{all/Untertitel}\par}}
 				\vspace*{.5em}
-				{\bf \Large \get{Thesis/AkademischerGrad/kurz}arbeit von %
-					\StrSubstitute{\get{all/Autoren}}{&}{\par}%
+				{\bf \Large \StrSubstitute{\get{all/Autoren}}{&}{\par}%
 				}
 			\end{center}
 			
