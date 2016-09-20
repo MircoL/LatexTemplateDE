@@ -652,6 +652,7 @@ Aenean massa. Cum sociis natoque penatibus et magnis.     \qed
 			\end{itemize}
 			Darüber hinaus gibt es den Befehl \verb|\Parameter|. Der erste (optionale) Parameter entspricht dem Variablentyp, der zweite den Variablennamen.
 			Die Farbgebung orientiert sich am Syntax-Highlighting von Eclipse.
+			
 			\newpage
 			\enlargethispage*{1em}
 			\begin{verbatim}
@@ -682,7 +683,7 @@ Aenean massa. Cum sociis natoque penatibus et magnis.     \qed
                 Setzt einen wichtigen Wert.
               }
             }
-            Außerdem gibt es noch diese Variable:\\
+            \noindent Außerdem gibt es noch diese Variable:\\
             \Vardef{org.example.java.test.Functions::value}{
               modifier={private},
               type={int},
@@ -720,13 +721,13 @@ Aenean massa. Cum sociis natoque penatibus et magnis.     \qed
 									Eine Klasse mit vielen tollen Funktionen, \zb:\\
 									\Methoddef{org.example.java.test.Functions::getValue0}{
 										modifier={public},
-										type={int},
+										type={void},
 										name={setValue(\Parameter[int]{value})},
 										description={
 											Setzt einen wichtigen Wert.
 										}
 									}
-									Außerdem gibt es noch diese Variable:\\
+									\noindent Außerdem gibt es noch diese Variable:\\
 									\Vardef{org.example.java.test.Functions::value}{
 										modifier={private},
 										type={int},
@@ -742,6 +743,16 @@ Aenean massa. Cum sociis natoque penatibus et magnis.     \qed
 				\end{documentationx}
 				
 		\noindent\makebox[\linewidth]{\rule{.7\paperwidth}{0.4pt}}
+		
+			\begin{redbox}
+				Bestimmte Befehle -- wie \zb die \verb|itemize|-Umgebung -- verursachen hier Probleme. Sie müssen mit dem Schlüsselwort \verb|\protect| geschützt werden:
+				\begin{verbatim}
+					\protect\begin{itemize}
+					    \protect\item Lorem ipsum
+					    \protect\item dolor sit amet.
+					\protect\end{itemize}
+				\end{verbatim}
+			\end{redbox}
 		
 		\section{Abstände}
 			\label{abstaende beweis beispiel}
@@ -768,8 +779,8 @@ Aenean massa. Cum sociis natoque penatibus et magnis.     \qed
 				\end{minipage}
 			}
 			
+			\vspace*{1em}
 			
-			\newpage
 			
 			Der zweite -- ebenfalls optionale -- Parameter beeinflusst die Abstände oben und unten:
 			\begin{itemize}
