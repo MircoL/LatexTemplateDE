@@ -7,7 +7,7 @@
 \pgfqkeys{/VorlageVersion5}{
 	all/Autoren						= {Mirco Lukas},
 	all/Titel	 					= {Dokumentation zur \LaTeX-Vorlage},
-	all/Untertitel 					= {Eine \LaTeX-Vorlage mit vielen vordefinierten Befehlen\par Version~5.14},
+	all/Untertitel 					= {Eine \LaTeX-Vorlage mit vielen vordefinierten Befehlen\par Version~5.15},
 	all/VersionPraefix 				= {},
 	all/Version 					= {false},
 	all/Icon/Breite					= {1},
@@ -123,12 +123,18 @@
 		\subsection{Arrays}
 			Es werden folgende Arrays definiert. Die einzelnen Felder werden \emph{ohne Leerzeichen} mit "`\&"' voneinander getrennt: \verb|all/Autoren = {Alice&Bob}|.
 			\begin{tabbing}
-				mmmmmmmmmmmmmmm			\= mmmmmmmmmmmmmmmmm					\=	mmmmmmmmmm			\kill
+				mmmmmmmmmmmmmmm			\= mmmmmmmmmmmmmmmmmmmmm					\=	mmmmmmmmmm			\kill
 				\bf Name des Arrays		\> \bf Inhalt 							\> \bf Dokumentklassen	\\
-				 all/Autoren			\> Die Autoren der Dokumente			\> alle					\\
+				 all/Autoren			\> Die Autoren der Dokumente \emph{(Anm. a)}	\> alle					\\
 				 Thesis/EingereichtBei	\> Prof., bei dem eingereicht wird		\> \tt Thesis 			\\
 				 Thesis/BetreuungDurch	\> Die Betreuer der Thesis				\> \tt Thesis
 			\end{tabbing}
+			
+			\paragraph*{Anmerkungen:}
+				\begin{enumeratealpha}
+					\item Wird kein Autor angegben, so wird beim Dokumenttyp \texttt{Thesis} eine Fehlermeldung geworfen und keine PDF ausgegeben.			
+				\end{enumeratealpha}
+				
 		\subsection{Pgfkeys}
 			Im Folgenden werden die existierenden Schlüssel-Werte-Paare gelistet. Die Dokumentklassen sind aus dem Schlüssel direkt ersichtlich. Dabei bedeuten:
 			\begin{description}
@@ -147,15 +153,15 @@
 				\item[{\tt \{\ldots\}}:] 
 						Genau einer der genannten Werte.
 			\end{description}
-			\newpage
+			\enlargethispage*{2em}
 			\begin{tabbing}
-				mmmmmmmmmmmmmmmmmm				\= mmmmmmmmmmmmmmmmmmmmmm 				\=\kill
+				mmmmmmmmmmmmmmmmmm				\= mmmmmmmmmmmmmmmmmmmmmm 				\=mmm\=\kill
 				\bf Schlüssel					\> \bf Bedeutung 						\> \bf Wertebereich	\\
-				all/Titel	 					\> Titel der Arbeit						\> string			\\
+				all/Titel	 					\> Titel der Arbeit	\emph{(Anm. a)}		\> string			\\
 				all/Untertitel 					\> Untertitel							\> string			\\
 				all/VersionPraefix 				\> Präfix der Versionsangabe			\> string			\\
 				all/Version 					\> Anzeigen der Version					\> boolean 			\\
-				all/Icon/Breite					\> Breite des Titelbildes				\> \doubleplus 		\\
+				all/Icon/Breite 				\> Breite des Titelbildes \emph{(Anm. b)}\> \doubleplus 		\\
 				all/Icon/URL					\> URL des Titelbildes					\> url				\\
 				all/Index/Boxen/blau/zeigen 	\> Zeige den Index aller blauen Boxen	\> boolean 			\\
 				all/Index/Boxen/blau/titel 		\> Titel des Index' aller blauen Boxen	\> string			\\
@@ -165,7 +171,7 @@
 				all/Index/Boxen/gruen/titel 	\> Titel des Index' aller grünen Boxen	\> string			\\
 				all/Index/Begriffe/zeigen 		\> Zeige den Index der Begriffe			\> boolean			\\
 				all/Index/Begriffe/titel 		\> Titel des Index' der Begriffe		\> string			\\
-				all/Index/Literatur/zeigen		\> Zeige das Literaturverzeichnis		\> boolean			\\
+				all/Index/Literatur/zeigen		\> Zeige das Literaturverzeichnis \emph{(Anm. c)}		\> boolean			\\
 				all/Index/Literatur/titel		\> Titel des Literaturverzeichnisses	\> string			\\
 				\\
 				Skript/AnmerkungenTitelseite 	\> Eine Anmerkung, die auf der Titelseite\> string			\\ 
@@ -187,32 +193,32 @@
 				Praesentationen/TitelKurz		\> Ein Kurztitel (für die Fußzeile)		\> string			\\
 				Praesentationen/Institut/lang	\> Das Institut (für die Titelseite)	\> string			\\
 				Praesentationen/Institut/kurz	\> Abkürzung des Instituts 				\> string 			\\
-												\> (für die Fußzeile)										\\
-				\\
-				\\
-												\>										\> ...
-			\end{tabbing}
-			\newpage	
-			\begin{tabbing}
-				mmmmmmmmmmmmmmmmmm				\= mmmmmmmmmmmmmmmmmmmmmm 				\=\kill
-					Thesis/AkademischerGrad/kurz	\> \zb \texttt{Bachelor}				\> string			\\
+												\> (für die Fußzeile)					\> \> ... 			\\
+				Thesis/AkademischerGrad/kurz	\> \zb \texttt{Bachelor}				\> string			\\
 				Thesis/AkademischerGrad/lang	\> \zb \texttt{Bachelor of Science}		\> string			\\
 				Thesis/Fach/Nominativ			\> Das Fach im Nominativ				\> string			\\
 				Thesis/Fach/Genitiv				\> Das Fach im Genitiv (einschl. Artikel) \> string			\\
 				Thesis/UniName/lang				\> Der Name der Uni (Langform)			\> string			\\
 				Thesis/UniName/kurz				\> Der Name der Uni (Kurzform)			\> string			\\
 				Thesis/Abgabedatum				\> Das Abgabedatum der Thesis			\> string			\\
-				Thesis/Versicherung/zeigen		\> Zeige die Versicherung der Eigenleistung.
-																						\> boolean			\\
-				Thesis/Versicherung/text		\> Text der Versicherung (\siu).		\> string			\\
+				Thesis/Versicherung/zeigen		\> Zeige die Versicherung der Eigenleistung					\\
+												\> \emph{(Anm. d)}						\> boolean			\\
+				Thesis/Versicherung/text		\> Text der Versicherung 				\> string			\\
 				Thesis/Versicherung/ort			\> \idr der Sitz der Uni 				\> string	
 			\end{tabbing}
-			\textbf{Besonderheiten:}
-			\begin{itemize}
-				\item Als Titelbild wird die Datei \texttt{titel.jpg} verwendet. Ist diese Datei im Arbeitsverzeichnis nicht vorhanden, bleiben die dazugehörigen Befehle ohne Wirkung.
-				\item Als Literaturliste wird die Datei \texttt{quellen.bib} verwendet. Ist diese Datei im Arbeitsverzeichnis nicht vorhanden, so wird keine Literaturliste erzeugt.
-				\item Wird die Anzeige der Versicherung eingeschaltet, aber kein Text angegeben, so erscheint ein Standardtext (Siehe Muster im Kap. \vref{thesis-bsp})
-			\end{itemize}
+			\paragraph*{Anmerkungen:}
+			\begin{enumeratealpha}
+				\item 
+					Wird kein Titel angegben, so wird beim Dokumenttyp \texttt{Thesis} eine Fehlermeldung geworfen und keine PDF ausgegeben.
+					Als Titelbild wird die Datei \texttt{titel.jpg} verwendet. 
+					Ist diese Datei im Arbeitsverzeichnis nicht vorhanden, bleiben die dazugehörigen Befehle ohne Wirkung.
+				\item 
+					Als Literaturliste wird die Datei \texttt{quellen.bib} verwendet. 
+					Ist diese Datei im Arbeitsverzeichnis nicht vorhanden, so wird keine Literaturliste erzeugt.
+				\item 
+					Wird die Anzeige der Versicherung eingeschaltet, aber kein Text angegeben, so erscheint ein Standardtext (Siehe Muster im Kap. \vref{thesis-bsp})
+				
+			\end{enumeratealpha}
 
 
 	% ------------------------------------------------------------------------------------------------------------------

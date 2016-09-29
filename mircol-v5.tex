@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%   LaTeX-Arbeitsvorlage, Version 5.14                	  	%
+%   LaTeX-Arbeitsvorlage, Version 5.15                	  	%
 %   Autor: 		Mirco Lukas <http://mircol.de>              %
 %   Lizenz: 	The MIT License (MIT)						%
 %   Updates: 	https://github.com/MircoL/LatexTemplateDE   %
@@ -40,6 +40,8 @@
 \usepackage{array}
 
 \usepackage[xcolor,pdftex,rightbars]{changebar}
+
+\usepackage{epstopdf}
 
 \usepackage{amsmath}
 
@@ -215,7 +217,7 @@
 
 \newcommand{\length}[1]{\ensuremath{|#1|}}
 
-\newcommand{\name}[1]{\textsc{#1}}
+\newcommand{\name}[1]{\mbox{\textsc{#1}}}
 
 \newcommand{\neuerbegriff}[1]{\tcbox[size=small,on line,colframe=red!75!black,colback=blue!5!white,fontupper=\normalsize]{#1}\xspace}
 
@@ -414,19 +416,12 @@
 	{€}{{\EUR}}1 {£}{{\pounds}}1 {~}{{\textasciitilde}}1
 }
 
-\definecolor{myGray}{RGB}{220,220,220}
-\definecolor{darkspringgreen}{rgb}{0.09, 0.45, 0.27}
+\definecolor{myGray}{RGB}{220,225,225}
 
 \lstset{
-	basicstyle=\ttfamily\color{black}\small,
-	keywordstyle=\bfseries\color{blue},
-	identifierstyle=\underbar,
-	commentstyle=\color{red},
-	%showlines=true,
 	backgroundcolor=\color{myGray},
 	numbers=left,
 	breakautoindent=true,
-	stringstyle=\itshape\color{darkspringgreen},
 	tabsize=4,
 	frame=single,
 	breaklines=true,
@@ -434,7 +429,25 @@
 	caption=\texttt\lstname
 }
 
+\definecolor{javared}{rgb}{0.6,0,0} % for strings
+\definecolor{javagreen}{rgb}{0.25,0.5,0.35} % comments
+\definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
+\definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
+\definecolor{javablue}{RGB}{0,37,189} % javadoc
 
+\lstset{language=Java,
+	basicstyle=\ttfamily,
+	keywordstyle=\color{javapurple}\bfseries,
+	stringstyle=\color{javablue},
+	commentstyle=\color{javagreen},
+	morecomment=[s][\color{javadocblue}]{/**}{*/},
+	numbers=left,
+	numberstyle=\tiny\color{black},
+	numbersep=10pt,
+	tabsize=4,
+	showspaces=false,
+	showstringspaces=false
+}
 
 % =====================================================
 %    Programmierdokumentation
@@ -695,6 +708,9 @@
 			\pagenumbering{arabic} 
 		}
 		{Thesis}{%
+			\ifthenelse{\equal{\get{all/Autoren}}{}}{\errmessage{Kein Autor bei der Thesis angegeben!}\stop}{}
+			\ifthenelse{\equal{\get{all/Titel}}{}}{\errmessage{Kein Titel bei der Thesis angegeben!}\stop}{}
+			
 			% an anderer Stelle führt dies zu einem Stacküberlauf ("Tex capacity exceeded, sorry...")!
 			\newcommand\eingereichtBei{}
 			\StrSubstitute{\get{Thesis/EingereichtBei}}{&}{,\par}[\eingereichtBei]
