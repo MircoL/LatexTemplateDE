@@ -886,8 +886,10 @@
 		
 			\ifthenelse{\equal{\get{all/Index/Boxen/gruen/zeigen}}{true}}{\tcblistof[\chapter]{greenboxes}{\get{all/Index/Boxen/gruen/titel}}}{}
 		
+			\newpage
 			\ifthenelse{\equal{\get{all/Index/Begriffe/zeigen}}{true}}{
 				\renewcommand{\indexname}{\get{all/Index/Begriffe/titel}}
+				\phantomsection
 				\addcontentsline{toc}{chapter}{\indexname}
 				\printindex
 			}{}
