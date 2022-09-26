@@ -601,7 +601,7 @@
 	\@removefromreset{footnote}{chapter}
 \makeatother
 
-% Paragraphenüberschrifen immer mit einem Punkt beenden. Kann durch die Stern-Variante "\paragraph*{title}" unterdrückt werden.
+% Paragraphenüberschriften immer mit einem Punkt beenden. Kann durch die Stern-Variante "\paragraph*{title}" unterdrückt werden.
 \renewcommand\paragraphmark[1]{.}
 
 \let\epsilonOld\epsilon
@@ -715,10 +715,10 @@
 			\ifthenelse{\equal{\get{all/Titel}}{}}{\errmessage{Kein Titel bei der Thesis angegeben!}\stop}{}
 
 			% an anderer Stelle führt dies zu einem Stacküberlauf ("Tex capacity exceeded, sorry...")!
-			\newcommand\eingereichtBei{}
-			\StrSubstitute{\get{Thesis/EingereichtBei}}{&}{,\par}[\eingereichtBei]
-			\newcommand\betreuungDurch{}
-			\StrSubstitute{\get{Thesis/BetreuungDurch}}{&}{,\par}[\betreuungDurch]
+			% \newcommand\eingereichtBei{}
+			% \StrSubstitute{\get{Thesis/EingereichtBei}}{&}{,\par}[\eingereichtBei]
+			% \newcommand\betreuungDurch{}
+			% \StrSubstitute{\get{Thesis/BetreuungDurch}}{&}{,\par}[\betreuungDurch]
 
 			\thispagestyle{empty}
 			\vspace*{4em}
@@ -737,8 +737,7 @@
 				\ifthenelse{\equal{\get{all/Titel}}{}}{}{{\Huge \textbf{\get{all/Titel}}\par}}
 				\ifthenelse{\equal{\get{all/Untertitel}}{}}{}{\vspace*{.5em}{\large\textbf{\get{all/Untertitel}}\par}}
 				\vspace*{.5em}
-				{\textbf{\Large \StrSubstitute{\get{all/Autoren}}}{&}{\par}%
-				}
+				{\textbf{\Large \get{all/Autoren}}}
 			\end{center}
 
 			\begin{tabular}{ll}%
