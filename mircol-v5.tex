@@ -18,7 +18,6 @@
 	{Skript}{\documentclass[12pt,ngerman,openany,numbers=noenddot,listof=totoc,bibliography=totoc,oneside]{scrbook}}%
 	{Thesis}{\documentclass[12pt,ngerman,openany,numbers=noenddot,listof=totoc,bibliography=totoc,oneside]{scrbook}}%
 	{Mitschrift}{\documentclass[a4paper,12pt,ngerman,oneside]{scrartcl}}%
-	{Buch}{\documentclass[paper=a5,pagesize,footheight=-3cm]{scrbook}}%
 	{Praesentation}{\documentclass{beamer}}%
 }[\errmessage{Ungueltiger Dokumenttyp: \dokumentTyp}\stop]
 
@@ -133,12 +132,6 @@
 		\usepackage[pdftex,pdfborderstyle={/S/U/W 1}]{hyperref}
 		\let\chapter\section
 	}
-	{Buch}{
-		\usepackage[a5paper]{geometry}
-		\usepackage{scrlayer-scrpage}
-		\usepackage[hyphens]{url}
-		\usepackage[pdftex,pdfborderstyle={/S/U/W 1}]{hyperref}
-	}
 	{Praesentation}{
 
 		\usecolortheme{whale}
@@ -186,7 +179,7 @@
 	\newcommand{\bigandd}{\bigwedge}
 
 \newcommand{\aufgabe}[1]{%
-	\renewcommand{\aktuelleAufgabe}{#1}%
+	\command{\aktuelleAufgabe}{#1}%
 	\section*{Aufgabe \aktuelleAufgabe}%
 }
 	\newcommand{\teilaufgabe}[1]{\paragraph*{\underline{TA \aktuelleAufgabe.#1}}}
@@ -273,9 +266,6 @@
 		\newcommand{\qed}{\hfill\ensuremath{\square}}
 	}
 	{Mitschrift}{
-		\newcommand{\qed}{\hfill\ensuremath{\square}}
-	}
-	{Buch}{
 		\newcommand{\qed}{\hfill\ensuremath{\square}}
 	}
 	{Praesentation}{
@@ -674,9 +664,6 @@
 		\checkbool{all/Index/Literatur/zeigen}
 		\checkbool{Thesis/Versicherung/zeigen}
 		% ------------------------------------------------------------------------
-		\ifx\documentTyp{Buch}
-			\ifthenelse{\equal{Buecher/Modus}{e} \OR \equal{Buecher/Modus}{rl}}{}{\errmessage{//Buecher/Modus muss 'e' oder 'rl' sein!}\stop}
-		\fi
 	\endgroup
 
 	\setVersion{\get{all/VersionPraefix}}
@@ -784,73 +771,6 @@
 
 			\ifthenelse{\equal{\get{all/Untertitel}}{}}{}{\subsubsection*{\get{all/Untertitel}}}
 		}
-		{Buch}{
-			\pagestyle{scrheadings}
-			\KOMAoptions{footinclude=true}
-			\lehead{\thepage}
-			\cehead{\leftmark}
-			\rehead{}
-			\lohead{}
-			\cohead{\rightmark}
-			\rohead{\thepage}
-			\ofoot{}
-			\cfoot{}
-			\ifoot{}
-
-			\renewcommand*\chapterpagestyle{empty}
-
-			\KOMAoptions{twoside=false}
-
-			\thispagestyle{empty}
-			\vspace*{15em}
-			\begin{center}
-				\ifthenelse{\equal{\get{all/Titel}}{}}{}{{\Huge \get{all/Titel}} \par\vspace*{1em}}
-				\get{all/Untertitel}
-				\ifthenelse{\equal{\get{all/Untertitel}}{}}{}{{\Large \get{all/Untertitel}} \par\vspace*{1em}}
-			\end{center}
-			\StrSubstitute{\get{all/Autoren}}{&}{\tabularnewline}[\autorTemp]
-			\begin{flushright}
-				\begin{tabular}r \autorTemp \end{tabular}
-
-				\ifthenelse{\equal{\get{all/Version}}{true}}{Version \version}{}
-			\end{flushright}
-
-			\begin{center}
-				\IfFileExists{titel.jpg}{\includegraphics[width=\get{all/Icon/Breite}\textwidth]{titel.jpg}}{}
-			\end{center}
-
-			\newpage
-
-
-			\ifthenelse{\equal{\get{Buecher/Widmung}}{}}{}{
-				\newpage
-				\thispagestyle{empty}
-				\mbox{}
-				\newpage
-				\thispagestyle{empty}
-				\vspace*{18em}
-
-				\begin{center}
-					\textit{\get{Buecher/Widmung}}
-				\end{center}
-				\newpage
-			}
-			\thispagestyle{empty}
-			\mbox{}
-			\tableofcontents
-
-			\IfStrEqCase{\get{Buecher/Modus}}{
-				{rl}{
-					\KOMAoptions{twoside=true}
-				}%
-				{e}{
-					\KOMAoptions{twoside=false}
-				}%
-			}[\errmessage{Ungueltiger Modus, erlaubt sind ausschließlich 'rl' oder 'e'}\stop]
-
-			\renewcommand{\chaptermark}[1]{\markboth{##1}{}}
-			\renewcommand{\sectionmark}[1]{\markright{##1}}
-		}
 		{Praesentation}{
 			\title{\get{all/Titel}}
 			\subtitle{\get{all/Untertitel}}
@@ -928,19 +848,6 @@
 			}{}
 		}
 		{Mitschrift}{%
-			\ifthenelse{\equal{\get{all/Index/Boxen/blau/zeigen}}{true}}{\tcblistof[\chapter]{blueboxes}{\get{all/Index/Boxen/blau/titel}}}{}
-
-			\ifthenelse{\equal{\get{all/Index/Boxen/gelb/zeigen}}{true}}{\tcblistof[\chapter]{yellowboxes}{\get{all/Index/Boxen/gelb/titel}}}{}
-
-			\ifthenelse{\equal{\get{all/Index/Boxen/gruen/zeigen}}{true}}{\tcblistof[\chapter]{greenboxes}{\get{all/Index/Boxen/gruen/titel}}}{}
-
-			\ifthenelse{\equal{\get{all/Index/Begriffe/zeigen}}{true}}{
-				\renewcommand{\indexname}{\get{all/Index/Begriffe/titel}}
-				\addcontentsline{toc}{chapter}{\indexname}
-				\printindex
-			}{}
-		}
-		{Buch}{%
 			\ifthenelse{\equal{\get{all/Index/Boxen/blau/zeigen}}{true}}{\tcblistof[\chapter]{blueboxes}{\get{all/Index/Boxen/blau/titel}}}{}
 
 			\ifthenelse{\equal{\get{all/Index/Boxen/gelb/zeigen}}{true}}{\tcblistof[\chapter]{yellowboxes}{\get{all/Index/Boxen/gelb/titel}}}{}

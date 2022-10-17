@@ -5,10 +5,7 @@
 %   Updates: 	https://github.com/MircoL/LatexTemplateDE   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\def\dokumentTyp{Skript} 		% oder
-%\def\dokumentTyp{Mitschrift}	% oder
-%\def\dokumentTyp{Buch} 		% oder
-%\def\dokumentTyp{Praesentation}
+\def\dokumentTyp{Skript}
 
 \def\hauptsprache{ngerman}
 \def\andereSprachen{english}
@@ -200,19 +197,22 @@
 			\def\dokumentTyp{Skript}		% oder
 			%\def\dokumentTyp{Thesis}	% oder
 			%\def\dokumentTyp{Mitschrift}	% oder
-			%\def\dokumentTyp{Buch}		% oder
 			%\def\dokumentTyp{Praesentation}
 			\end{verbatim}
 
-			Zur Wahl eines Dokumenttyps entfernt man das Prozentzeichen vor der entsprechenden Zeile und setzt die Zeichen vor alle anderen Zeilen. Um ein Buch zu verfassen, müsste man den Code also wie folgt verändern:
+			Zur Wahl eines Dokumenttyps entfernt man das Prozentzeichen vor der entsprechenden Zeile und setzt die Zeichen vor alle anderen Zeilen. Um eine Thesis zu verfassen, müsste man den Code also wie folgt verändern:
 			\newpage
 			\begin{verbatim}
 			%\def\dokumentTyp{Skript}		% oder
-			%\def\dokumentTyp{Thesis}	% oder
+			\def\dokumentTyp{Thesis}	% oder
 			%\def\dokumentTyp{Mitschrift}	% oder
-			\def\dokumentTyp{Buch}		% oder
 			%\def\dokumentTyp{Praesentation}
 			\end{verbatim}
+
+			\begin{redbox}
+				Hinweis zum Typ \emph{Buch}:
+				Bitte hier an die Beispieldatei \texttt{/doc/muster-buch.pdf} halten, da dieser Dokumenttyp 2022 komplett neu überarbeitet wurde.
+			\end{redbox}
 
 			\subsection{Skript}
 
@@ -281,30 +281,10 @@
 
 				Ein solches Buch hat in etwa Taschenbuch-Format. Es eignet sich somit für längere Fließtexte wie \zb Romane.
 
-				Die Einstellungen für Bücher sind:
-
-				\begin{verbatim}
-				Buecher/Widmung					= {},
-				Buecher/Modus					= {rl},
-				\end{verbatim}
-
-				Schreibt man etwas in die Klammer für Widmungen, so erscheint dieser Text zentriert auf der dritten Buchseite. Die zweite Klammer gibt den Modus für Seitenränder vor. „rl“ bedeutet, dass es unterschiedliche Ränder für rechte und linke Seiten gibt und „e“ hieße, dass Seiteninhalte stets zentriert sind, egal ob sie links oder rechts stehen. Beispiel:
-
-				\begin{center}
-					\fbox{\includegraphics[width=.9\textwidth]{Grafiken/3}}
-				\end{center}
-
-				Zu diesem Ergebnis führten folgende Einstellungen:
-
-				\begin{verbatim}
-				all/Autoren      = {Autor von Buch},
-				all/Titel        = {Das Paarungsverhalten nordschwäbischer Regenwürmer},
-				all/Untertitel   = {Eine biologische Abhandlung mit vielen Bildern},
-				Buecher/Widmung  = {Für den einen ganz besonderen Wurm, den ich kennen
-				und lieben gelernt habe.},
-				Buecher/Modus    = {rl},
-				\end{verbatim}
-
+				\begin{redbox}
+					Bitte hier an die Beispieldatei \texttt{/doc/muster-buch.pdf} halten, da dieser Dokumenttyp 2022 komplett neu überarbeitet wurde.
+				\end{redbox}
+			
 			\subsection{Praesentation}
 
 				Die \emph{Praesentation} unterscheidet sich sehr stark von den anderen Typen. Genutzt wird hier die sogenannte \emph{Beamer}-Klasse von \LaTeX{}. Dabei handelt es sich um eine Formatierung, die auf Beamer- bzw. Projektor-Präsentationen ausgelegt ist. Die erzeugte PDF wird dann als Vollbild auf die Wand geworfen und Seite für Seite durchgeblättert.
@@ -329,9 +309,6 @@
 
 				\begin{tabular}{|p{5 cm}|p{4 cm}|p{5 cm}|}
 					\hline \ru \textbf{Befehl} & \textbf{Ergebnis} & \textbf{Beschreibung} \\
-					\hline \ru $\backslash$aufgabe\{1\} & \begin{minipage}{.23\textwidth}
-						\aufgabe{1}
-					\end{minipage} & Überschrift für Aufgaben mit Aufgabennummer in Klammer \\
 					\hline $\backslash$blitz & \blitz & Blitzsymbol, \zb Widersprüche \\
 					\hline $\backslash$colorref(1) & \colorref(1) & Nummerierung für Formeln zur Referenzierung (1 bis 4) \\
 					\hline $\backslash$ellipse & \ellipse & Auslassungszeichen \\
