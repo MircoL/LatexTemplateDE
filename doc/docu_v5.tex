@@ -521,7 +521,6 @@ Aenean massa. Cum sociis natoque penatibus et magnis.     \qed
 				\item Der zweite Parameter kann einer der Folgenden sein:
 					\begin{itemize}
 						\item \texttt{tt}: {\texttt{Gibt den Text mit Typewriter-Schrift aus.}}
-						\item \texttt{hand}: {\oeschfamily Gibt den Text in Handschrift aus.}
 						\item \texttt{fraktur}: {\frakfamily Gibt den Text mit Frakturschrift aus:.} Das Ende-s ("`Rund-s"') wird als \verb|s:| notiert.
 					\end{itemize}
 					Jeder andere Parameter führt zur Verwendung der Normalschrift. Ist dies gewünscht, sollte man den Parameter allerdings einfach weglassen.
@@ -536,13 +535,8 @@ Aenean massa. Cum sociis natoque penatibus et magnis.     \qed
 			\end{itemize}
 
 			\begin{redbox}
-				Die polnischen Sonderzeichen \k a und \k e stehen weder in der \texttt{hand}- noch der \texttt{fraktur}-Umgebung zur Verfügung. Sie werden dort jedoch nachgebildet (vgl. folgende Beispiele). Wer die Zeichen durch \texttt{a} bzw. \texttt{e} ohne Ogonek dargestellt haben möchte, muss \verb|\let\k\relax| nach \texttt{\textbackslash begin\{quotex\}} schreiben.
+				Die polnischen Sonderzeichen \k a und \k e stehen in der \texttt{hand}- und der \texttt{fraktur}-Umgebung nicht zur Verfügung. Sie werden dort jedoch nachgebildet (vgl. folgende Beispiele). Wer die Zeichen durch \texttt{a} bzw. \texttt{e} ohne Ogonek dargestellt haben möchte, muss \verb|\let\k\relax| nach \texttt{\textbackslash begin\{quotex\}} schreiben.
 			\end{redbox}
-
-			\begin{redbox}
-				Das Paket \texttt{oesch.sty} steht auf manchen Systemen nicht zur Verfügung. In diesem Fall wird die {\oeschfamily Schreibschrift} durch eine einfache \emph{Kursivschrift} ersetzt. Es hift, wenn man die \href{https://www.ctan.org/tex-archive/fonts/oesch?lang=de}{Paketdatei von CTAN herunterlädt} und in den Ordner der Hauptdatei extrahiert oder das make-Target \texttt{oesch} ausführt. Die \texttt{Beispiel}- und \texttt{Readme}-Dateien können gelöscht werden.
-			\end{redbox}
-
 
 			\begin{verbatim}
 				\begin{quotex}[Wikipedia (ohne Parameter)]
@@ -570,22 +564,6 @@ Aenean massa. Cum sociis natoque penatibus et magnis.     \qed
 				\begin{minipage}[t]{.9\textwidth}
 					\bigskip
 					\begin{quotex}[Wikipedia mit Parameter "`tt"'][tt]
-						\pangramm
-					\end{quotex}
-					\bigskip
-				\end{minipage}
-			}
-
-			\begin{verbatim}
-				\begin{quotex}[Wikipedia mit Parameter "`hand"'][hand]
-				\pangramm
-				\end{quotex}
-			\end{verbatim}
-
-			\fbox{
-				\begin{minipage}[t]{.9\textwidth}
-					\bigskip
-					\begin{quotex}[Wikipedia mit Parameter "`hand"'][hand]
 						\pangramm
 					\end{quotex}
 					\bigskip

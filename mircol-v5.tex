@@ -27,7 +27,7 @@
 % =====================================================
 % V5.9+
 	\providecommand{\hauptsprache}{ngerman}
-	\providecommand{\andereSprachen}{english,polish,russian}
+	\providecommand{\andereSprachen}{english,polish}
 
 % =====================================================
 %    Pakete
@@ -84,12 +84,6 @@
 \usepackage{multicol}
 
 % Workaround for Linux with texlive
-\IfFileExists{oesch.sty}%
-	{\usepackage{oesch}}%
-	{%
-		\errmessage{Warnung: 'oesch.sty' nicht gefunden. oeschfamily wird ein Synonym fuer 'em' sein.} %
-	}
-\providecommand{\oeschfamily}{\em}
 \usepackage{pgfkeys}
 
 \usepackage{polski}
@@ -182,7 +176,7 @@
 	\command{\aktuelleAufgabe}{#1}%
 	\section*{Aufgabe \aktuelleAufgabe}%
 }
-	\newcommand{\teilaufgabe}[1]{\paragraph*{\underline{TA \aktuelleAufgabe.#1}}}
+%	\newcommand{\teilaufgabe}[1]{\paragraph*{\underline{TA \aktuelleAufgabe.#1}}}
 	\newcommand{\aktuelleAufgabe}{1}
 
 \newboolean{isAppendixSet}
