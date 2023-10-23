@@ -4,7 +4,7 @@ default:
 
 .PHONY: clean
 clean:
-	rm \
+	rm -rf \
 		*.cb \
 		*.cb2 \
 		*.idx \
@@ -13,9 +13,7 @@ clean:
 		*.snm \
 		*.toc \
 		*.log \
-		*.nav \
-	|| true
-
+		*.nav 
 .PHONY: oesch
 oesch:
 	wget http://mirrors.ctan.org/fonts/oesch/oe.def
