@@ -9,7 +9,7 @@ default:
 
 .PHONY: clean
 clean:
-	rm \
+	rm -rf \
 		*.cb \
 		*.cb2 \
 		*.idx \
@@ -18,9 +18,7 @@ clean:
 		*.snm \
 		*.toc \
 		*.log \
-		*.nav \
-	|| true
-
+		*.nav 
 
 .PHONY: oesch
 oesch:
