@@ -5,7 +5,7 @@ default:
 	pdflatex --interaction=nonstopmode muster-praesentation.tex >> tex.log ; \
 	pdflatex --interaction=nonstopmode muster-skript.tex >> tex.log ; \
 	pdflatex --interaction=nonstopmode muster-thesis.tex >> tex.log ; \
-	pdflatex --interaction=nonstopmode docu_v5.tex >> tex.log
+	pdflatex --interaction=nonstopmode docu_v6.tex >> tex.log
 
 .PHONY: clean
 clean:

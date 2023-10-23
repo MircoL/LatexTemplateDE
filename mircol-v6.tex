@@ -176,7 +176,7 @@
 	\command{\aktuelleAufgabe}{#1}%
 	\section*{Aufgabe \aktuelleAufgabe}%
 }
-%	\newcommand{\teilaufgabe}[1]{\paragraph*{\underline{TA \aktuelleAufgabe.#1}}}
+	\newcommand{\teilaufgabe}[1]{\paragraph*{\underline{TA \aktuelleAufgabe.#1}}}
 	\newcommand{\aktuelleAufgabe}{1}
 
 \newboolean{isAppendixSet}
@@ -696,10 +696,10 @@
 			\ifthenelse{\equal{\get{all/Titel}}{}}{\errmessage{Kein Titel bei der Thesis angegeben!}\stop}{}
 
 			% an anderer Stelle führt dies zu einem Stacküberlauf ("Tex capacity exceeded, sorry...")!
-			% \newcommand\eingereichtBei{}
-			% \StrSubstitute{\get{Thesis/EingereichtBei}}{&}{,\par}[\eingereichtBei]
-			% \newcommand\betreuungDurch{}
-			% \StrSubstitute{\get{Thesis/BetreuungDurch}}{&}{,\par}[\betreuungDurch]
+			 \newcommand\eingereichtBei{}
+			 \StrSubstitute{\get{Thesis/EingereichtBei}}{&}{,\par}[\eingereichtBei]
+			 \newcommand\betreuungDurch{}
+			 \StrSubstitute{\get{Thesis/BetreuungDurch}}{&}{,\par}[\betreuungDurch]
 
 			\thispagestyle{empty}
 			\vspace*{4em}
